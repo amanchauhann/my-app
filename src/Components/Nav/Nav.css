@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap');
+
+.navigation-bar{
+    border: 1px solid red;
+    display: flex;
+    justify-content: space-around;
+    height: var(--nav-height);
+    background-color: transparent;
+    align-items: center;
+    font-family: var(--nav-font);
+    color: white;
+    gap: 10px;
+    padding:0 1rem;
+}
+
+.search-bar{
+    background: none;
+    width: 400px;
+    height: 30px;
+    border-radius: 5%;
+    color: white;
+    padding: 1rem;
+    font-size: 16px;
+    font-weight: 300;
+    box-shadow: none;
+    transition: 0.7s;
+}
+
+/*===== for mobile =====*/
+@media screen and (max-width: 500px) {
+    .search-bar{
+        min-width: 100px;
+    }
+}
+/* ======== */
+
+.search-bar:focus{
+    outline: none;
+    box-shadow: 0 0 6px #616461;
+    transition: 0.2s;
+}
+
+.right-container{
+    border: 1px solid green;
+    min-height: 25px;
+}
+
+.ul-list{
+    list-style-type: none;
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+    /* font-weight: 500; */
+}

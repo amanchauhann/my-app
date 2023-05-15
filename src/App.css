@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -48,4 +48,28 @@
   color: #d9d9d9;
   font-size: 1.2rem;
   margin: 1rem;
+} */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap');
+
+:root {
+  --nav-font: 'Open Sans', sans-serif;
+  --nav-height: 64px;
+}
+
+
+*{
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* .upper-container{
+  background: url(/src/assets/Home/Hero/Hero1.jpg) center;
+  border: 2px solid green;
+  height: 100vh;
+} */
+
+a{
+  text-decoration: none;
+  color: inherit;
 }

@@ -1,0 +1,11 @@
+
+.nav-list {
+    border-bottom: 1px solid transparent;
+}
+
+.nav-list:hover {
+    /* border-bottom: 1px solid red; */
+    cursor: pointer;
+    color: rgba(255,255,255,.69);
+    transition: color 0.2s ease-in;
+}
