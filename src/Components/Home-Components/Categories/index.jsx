@@ -1,9 +1,12 @@
+import { useContext } from "react";
 import "./Categories.css";
 import CategoryCard from "./CategoryCard";
-import { categoriesData } from "./CategoriesData";
+// import { categoriesData } from "./CategoriesData";
+import { ContextData } from "../../../index";
 
 
 const Categories = () => {    
+    const {categoriesData} = useContext(ContextData)
     return (
         <div className="categories-container">
         <h1 className="categories-container-title">Explore Products in Different Fields</h1>

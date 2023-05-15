@@ -1,4 +1,7 @@
 import { v4 as uuid } from "uuid";
+import category1Image from "../../../src/assets/Home/Categories/category1.jpg";
+import category2Image from "../../../src/assets/Home/Categories/category2.jpg";
+import category3Image from "../../../src/assets/Home/Categories/category3.jpg";
 
 /**
  * Category Database can be added here.
@@ -8,20 +11,23 @@ import { v4 as uuid } from "uuid";
 export const categories = [
   {
     _id: uuid(),
-    categoryName: "fiction",
+    categoryName: "Camera",
     description:
-      "literature in the form of prose, especially novels, that describes imaginary events and people",
+      "Professional Aerial and Ground Filmmaking Tools for Professionals",
+      categoryImage: category1Image,
   },
   {
     _id: uuid(),
-    categoryName: "non-fiction",
+    categoryName: "Mini",
     description:
-      "Non-fiction is writing that gives information or describes real events, rather than telling a story.",
+      "Compact and Portable Drones for Recreational fun activities",
+      categoryImage: category2Image,
   },
   {
     _id: uuid(),
-    categoryName: "horror",
+    categoryName: "Agriculture",
     description:
-      "Meant to cause discomfort and fear for both the character and readers, horror writers often make use of supernatural and paranormal elements in morbid stories that are sometimes a little too realistic.",
+      "Drones Designed for Precision Farming and Better Crop Management",
+      categoryImage: category3Image,
   },
 ];
