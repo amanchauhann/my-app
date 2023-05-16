@@ -1,6 +1,5 @@
 import { Card, CardBody, Image, Stack, Heading, Text, Divider, CardFooter, ButtonGroup, Button } from '@chakra-ui/react';
 
-
 const ProductCard = ({productImage, ratings, title, price}) => {
     return(
         <div style={{borderTop: "5px solid rgb(60,69,69, 0.8)"}}>
@@ -44,6 +43,7 @@ const ProductCard = ({productImage, ratings, title, price}) => {
 </Card>
 
         </div>
+        
     )
 }
 
