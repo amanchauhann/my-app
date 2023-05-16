@@ -12,7 +12,7 @@ const Nav = () => {
             <h2>Rones</h2>
             </Link>
 
-            <input className="search-bar" type="search" />
+            <input className="search-bar" type="search" placeholder="search here..." />
             <div className="right-container">
             <ul className="ul-list">
                 <NavList liText="Login" />

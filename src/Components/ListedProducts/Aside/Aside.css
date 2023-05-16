@@ -1,0 +1,30 @@
+.aside{
+    /* border: 2px solid purple; */
+    /* min-width: max-content; */
+    padding: 0 1rem;
+    flex: 0 0 250px;
+    align-self: flex-start;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.aside>*{
+    /* border: 2px solid orange; */
+}
+
+.price-slider{
+    min-width: 200px;
+}
+
+.filter-container{
+    display: flex;
+    flex-direction: column;
+}
+
+  p{
+    font-weight: 700;
+  }
+  
+  

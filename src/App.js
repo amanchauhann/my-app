@@ -14,7 +14,10 @@ function App() {
 // console.log(productsData.products)
   return (
     <div className="App">
+      <div style={{background: "rgb(53, 53, 53)"}}>
       {shouldDisplayNav && <Nav />}
+
+      </div>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ListedProducts />} />

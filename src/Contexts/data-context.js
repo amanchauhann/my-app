@@ -13,6 +13,10 @@ export const DataContext = ({children}) => {
                 const getCategoriesData = await getCategoriesRes.json()
                 const getCategories = await getCategoriesData.categories
                 setCategoriesData(getCategories)
+
+                const res = await fetch("/api/products")
+                const data = await res.json()
+                setProductsData(data.products)
             }catch(e){
                 console.log(e)
             }
@@ -20,7 +24,7 @@ export const DataContext = ({children}) => {
         fetchingData()
     },[])
     return(
-        <ContextData.Provider value={{categoriesData}}>
+        <ContextData.Provider value={{categoriesData, productsData}}>
             {children}
         </ContextData.Provider>
     )
