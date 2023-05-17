@@ -1,5 +1,5 @@
 import { Card, CardBody, Image, Stack, Heading, Text, Divider, CardFooter, ButtonGroup, Button } from '@chakra-ui/react';
-import outofstock from "../../../../assets/Utils/outofstock.png"
+import outofstock from "../../../../Logos/Utils/outofstock.png"
 
 const ProductCard = ({productImage, ratings, title, price, availability}) => {
   const soldOut = !availability;
@@ -44,7 +44,7 @@ const ProductCard = ({productImage, ratings, title, price, availability}) => {
     </ButtonGroup>
   </CardFooter>
 </Card>
-{soldOut && <img src={outofstock} style={{width: "100px", position: "absolute", top: "-25px", right: "13px", opacity: "0.4,", transform: "rotate(-30deg)"}}/>}
+{soldOut && <img src={outofstock} style={{width: "100px", position: "absolute", top: "-25px", right: "13px", opacity: "0.5", transform: "rotate(-30deg)"}}/>}
         </div>
         
     )

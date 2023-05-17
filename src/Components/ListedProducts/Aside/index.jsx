@@ -1,12 +1,16 @@
+import { useContext, useState } from "react";
 import "./Aside.css";
+import { ContextData } from "../../../index";
 
 const Aside = () => {
+    const {priceHandler, filteredPrice} = useContext(ContextData)
+    
     return (
         <div className="aside">
             <p className="filter-heading-bold p-aside">Filters</p>
             <div className="price-filter">
                 <p className="filter-heading-bold p-aside">Price</p>
-                <input className="price-slider" type="range" min="0" max="10000" />
+                <input className="price-slider" onChange={priceHandler} type="range" min="0" max="10000" />
             </div>
             <div className="categories-filter">
                 <p className="filter-heading-bold p-aside">Categories</p>
