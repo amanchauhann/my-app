@@ -3,13 +3,13 @@ import "./Aside.css";
 const Aside = () => {
     return (
         <div className="aside">
-            <p className="filter-heading-bold">Filters</p>
+            <p className="filter-heading-bold p-aside">Filters</p>
             <div className="price-filter">
-                <p className="filter-heading-bold">Price</p>
+                <p className="filter-heading-bold p-aside">Price</p>
                 <input className="price-slider" type="range" min="0" max="10000" />
             </div>
             <div className="categories-filter">
-                <p className="filter-heading-bold">Categories</p>
+                <p className="filter-heading-bold p-aside">Categories</p>
                 <div className="filter-category-container filter-container">
                 <label>
                 <input type="checkbox" name="filter-category-check" />
@@ -26,7 +26,7 @@ const Aside = () => {
                 </div>
             </div>
             <div className="weight-filter">
-                <p className="filter-heading-bold">Weight</p>
+                <p className="filter-heading-bold p-aside">Weight</p>
                 <div className="filter-weight-container filter-container">
                     <label>
                         <input type="radio" name="filter-weight-select" />
@@ -50,7 +50,7 @@ const Aside = () => {
             </div>
 
             <div className="rating-filter">
-                <p className="filter-heading-bold">Ratings</p>
+                <p className="filter-heading-bold p-aside">Ratings</p>
                 <div className="filter-rating-container filter-container">
                     <label>
                         <input type="radio" name="filter-rating-select" />

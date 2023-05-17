@@ -32,6 +32,9 @@ export const products = [
     ratings: "4",
     weight: "4.5",
     productImage: camera1,
+    availability: true,
+    description: "Capture stunning aerial footage and photos with the versatile SkyCam X200 camera drone.",
+    reviewedBy: 7692
   },
   {
     _id: uuid(),
@@ -42,6 +45,9 @@ export const products = [
     ratings: "5",
     weight: "2.3",
     productImage: camera2,
+    availability: true,
+    description: "Experience professional-grade aerial photography with the AeroVision 500 drone's 4K capabilities.",
+    reviewedBy: 3267
   },
   {
     _id: uuid(),
@@ -52,6 +58,9 @@ export const products = [
     ratings: "4",
     weight: "1.7",
     productImage: camera3,
+    availability: true,
+    description: "Unleash your creativity with the PixelDrone 4K, a high-performance drone equipped with a powerful 4K camera.",
+    reviewedBy: 8884
   },
   {
     _id: uuid(),
@@ -62,6 +71,9 @@ export const products = [
     ratings: "3",
     weight: "3.8",
     productImage: camera4,
+    availability: false,
+    description: "Capture cinematic aerial footage with the professional-grade CineWing Pro drone.",
+    reviewedBy: 5841
   },
   {
     _id: uuid(),
@@ -72,6 +84,9 @@ export const products = [
     ratings: "4",
     weight: "0.9",
     productImage: camera5,
+    availability: true,
+    description: "Get closer to your subjects with the ZoomCam Z1, a compact drone featuring a powerful zoom lens.",
+    reviewedBy: 2345
   },
   {
     _id: uuid(),
@@ -82,6 +97,9 @@ export const products = [
     ratings: "4",
     weight: "0.3",
     productImage: mini1,
+    availability: true,
+    description: "Enjoy indoor flying and learn the basics with the small and lightweight NanoFlyer Mini drone.",
+    reviewedBy: 9738
   },
   {
     _id: uuid(),
@@ -92,6 +110,9 @@ export const products = [
     ratings: '3',
     weight: '0.6',
     productImage: mini2,
+    availability: true,
+    description: "Experience agile and maneuverable flights with the compact MicroCopter S2 drone.",
+    reviewedBy: 4567
   },
   {
     _id: uuid(),
@@ -102,6 +123,9 @@ export const products = [
     ratings: "5",
     weight: "0.8",
     productImage: mini3,
+    availability: true,
+    description: "Soar through the skies with the TinyGlider E1, a mini drone designed for smooth and stable flights.",
+    reviewedBy: 5432
   },
   {
     _id: uuid(),
@@ -112,6 +136,9 @@ export const products = [
     ratings: "2",
     weight: "0.5",
     productImage: mini4,
+    availability: false,
+    description: "Take the PocketFlyer X4 mini drone with you anywhere, perfect for on-the-go adventures.",
+    reviewedBy: 6789
   },
   {
     _id: uuid(),
@@ -122,6 +149,9 @@ export const products = [
     ratings: "4",
     weight: "0.7",
     productImage: mini5,
+    availability: true,
+    description: "Experience agile and fun flights with the NanoQuad Q5, a compact and reliable mini drone.",
+    reviewedBy: 4321
   },
   {
     _id: uuid(),
@@ -132,6 +162,9 @@ export const products = [
     ratings: 4,
     weight: 4.8,
     productImage: agriculture1,
+    availability: true,
+    description: "Optimize your farming operations with the FarmScout F10 agriculture drone.",
+    reviewedBy: 9876
   },
   {
     _id: uuid(),
@@ -142,6 +175,9 @@ export const products = [
     ratings: 5,
     weight: 3.2,
     productImage: agriculture2,
+    availability: true,
+    description: "Achieve higher crop yields and precise field mapping with the CropMaster C300 agriculture drone.",
+    reviewedBy: 7654
   },
   {
     _id: uuid(),
@@ -152,6 +188,9 @@ export const products = [
     ratings: 4,
     weight: 5.5,
     productImage: agriculture3,
+    availability: false,
+    description: "Improve your farm management with the powerful and advanced FieldRanger FR500 agriculture drone.",
+    reviewedBy: 5432
   },
   {
     _id: uuid(),
@@ -162,15 +201,21 @@ export const products = [
     ratings: 3,
     weight: 6.8,
     productImage: agriculture4,
+    availability: true,
+    description: "Enhance your harvest efficiency and crop analysis with the HarvestEye H800 agriculture drone.",
+    reviewedBy: 7890
   },
-  {
-    _id: uuid(),
-    title: "AquaSense A200",
-    brand: "AgroDrones",
-    price: 5000,
-    categoryName: "agriculture",
-    ratings: 4,
-    weight: 2.5,
-    productImage: agriculture5,
-  }
+      {
+      _id: uuid(),
+      title: "AquaSense A200",
+      brand: "AgroDrones",
+      price: 5000,
+      categoryName: "agriculture",
+      ratings: 4,
+      weight: 2.5,
+      productImage: agriculture5,
+      availability: false,
+      description: "Monitor water resources and irrigation systems with the AquaSense A200 agriculture drone.",
+      reviewedBy: 9990
+      }
 ];

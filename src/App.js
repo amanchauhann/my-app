@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { ContextData } from "./index";
 import ListedProducts from "./Pages/ListedProducts";
 import Mockman from "mockman-js"
-import DummySingleProductPage from "./DummySingleProductPage";
+import ProductDetail from "./Pages/ProductDetail";
 
 function App() {
   const location = useLocation();
@@ -23,7 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ListedProducts />} />
-        <Route path="/products/:ProductID" element={<DummySingleProductPage />} />
+        <Route path="/products/:ProductID" element={<ProductDetail />} />
         <Route path="/mockman" element={<Mockman />} />
       </Routes>
       <Footer />

@@ -6,7 +6,7 @@
     /* justify-content: space-evenly; */
     gap: 1rem;
 }
-h2 {
+.headingtwo {
     font-size: 2em;
     font-weight: bold;
     line-height: normal;

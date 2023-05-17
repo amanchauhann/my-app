@@ -1,10 +1,14 @@
 import { createContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 export const ContextData = createContext()
 
 export const DataContext = ({children}) => {
     const [categoriesData, setCategoriesData] = useState([])
     const [productsData,setProductsData] = useState([])
+    const [selectedProduct, setSelectedProduct] = useState([])
+    const {ProductID} = useParams()
+    console.log(ProductID)
 
     useEffect(()=>{
         const fetchingData = async () =>{
