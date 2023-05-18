@@ -3,7 +3,7 @@ import WeightInput from "../../../../Action/ListedProducts/inputs/WeightInput"
 import { ContextData } from "../../../../../index"
 import {weightFilterData} from "./Data"
 
-export const WeightsContainer = () => {
+export const Weight = () => {
     const {categoriesData,priceHandler, categoryHandler, weightHandler, ratingHandler, resetFilters, userFilters, filteredPrice} = useContext(ContextData)
     const {price, categories, weight: {min, max}, ratings} = userFilters
 

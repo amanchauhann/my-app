@@ -1,7 +1,8 @@
+import "../FiltersContainer.css"
 import { useContext } from "react"
 import { ContextData } from "../../../../../index"
 
-export const PriceContainer = () => {
+export const Price = () => {
     const {categoriesData,priceHandler, categoryHandler, weightHandler, ratingHandler, resetFilters, userFilters, filteredPrice} = useContext(ContextData)
     const {price, categories, weight: {min, max}, ratings} = userFilters
     return (

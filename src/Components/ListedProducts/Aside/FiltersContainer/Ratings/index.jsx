@@ -3,7 +3,7 @@ import { ContextData } from "../../../../../index"
 import RatingsInput from "../../../../Action/ListedProducts/inputs/RatingsInput"
 import { ratingsFilterData } from "./Data"
 
-export const RatingsContainer = () => {
+export const Ratings = () => {
     const {categoriesData,priceHandler, categoryHandler, weightHandler, ratingHandler, resetFilters, userFilters, filteredPrice} = useContext(ContextData)
     const {price, categories, weight: {min, max}, ratings} = userFilters
     return (
