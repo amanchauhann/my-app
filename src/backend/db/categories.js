@@ -11,21 +11,21 @@ import category3Image from "../../../src/assets/Home/Categories/category3.jpg";
 export const categories = [
   {
     _id: uuid(),
-    categoryName: "Camera",
+    categoryName: "camera",
     description:
       "Professional Aerial and Ground Filmmaking Tools for Professionals",
       categoryImage: category1Image,
   },
   {
     _id: uuid(),
-    categoryName: "Mini",
+    categoryName: "mini",
     description:
       "Compact and Portable Drones for Recreational fun activities",
       categoryImage: category2Image,
   },
   {
     _id: uuid(),
-    categoryName: "Agriculture",
+    categoryName: "agriculture",
     description:
       "Drones Designed for Precision Farming and Better Crop Management",
       categoryImage: category3Image,

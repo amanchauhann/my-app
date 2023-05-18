@@ -11,7 +11,8 @@ export const DataContext = ({children}) => {
         price: 0,
         categories: [],
         weight: {min: "", max: Infinity},
-        ratings: null
+        ratings: null,
+        sort: ""
     })
     const [selectedProduct, setSelectedProduct] = useState([])
     const {ProductID} = useParams()
@@ -41,6 +42,7 @@ export const DataContext = ({children}) => {
     }
 
     const categoryHandler = (e) =>{
+        console.log("aaa", e.target.value)
         setUserFilters(prev=> {
             return (prev.categories).find(existingCategory => existingCategory === e.target.value) ? {...prev, categories: (prev.categories).filter(eachPrevExistingCategory => eachPrevExistingCategory !== e.target.value)} : {...prev, categories: [...prev.categories, e.target.value]}
         })
@@ -60,12 +62,17 @@ export const DataContext = ({children}) => {
             price: 0,
             categories: [],
             weight: {min: 0, max: Infinity},
-            ratings: 0
+            ratings: 0,
+            sort: ""
         })
     }
 
+    const sortHandler = (e) => {
+        setUserFilters(prev => ({...prev, sort: e.target.value}))
+    }
+
     return(
-        <ContextData.Provider value={{categoriesData, productsData, priceHandler, categoryHandler, weightHandler, ratingHandler, resetFilters, userFilters}}>
+        <ContextData.Provider value={{categoriesData, productsData, priceHandler, categoryHandler, weightHandler, ratingHandler, sortHandler, resetFilters, userFilters}}>
             {children}
         </ContextData.Provider>
     )
