@@ -3,17 +3,25 @@ import ProductCard from "../ProductListedCard"
 import { useContext } from "react"
 import { ContextData } from "../../../../index"
 import { Link } from "react-router-dom"
-import {getFilteredByPriceProducts} from "../../../../utils"
+import {getFilteredByCategoriesProducts, getFilteredByPriceProducts, getFilteredByRatingProducts, getFilteredByWeightProducts} from "../../../../utils"
 
 const AllProducts = () => {
-    const {productsData, filteredPrice} = useContext(ContextData)
-    console.log(filteredPrice)
-    const filteredByPriceProducts = getFilteredByPriceProducts(productsData, filteredPrice)
+    const {productsData, userFilters} = useContext(ContextData)
+    console.log(userFilters.weight.max)
+    const filteredByPriceProducts = getFilteredByPriceProducts(productsData, userFilters.price)
+    // const filteredByCategoryProducts = userFilters.categories.length ? filteredByPriceProducts.filter(({categoryName}) => userFilters.categories.includes(categoryName)) : filteredByPriceProducts
+    const filteredByCategoryProducts = getFilteredByCategoriesProducts(filteredByPriceProducts, userFilters.categories)
+    const filteredByWeightProducts = getFilteredByWeightProducts(filteredByCategoryProducts, userFilters.weight)
+    const filteredByRatingsProducts = getFilteredByRatingProducts(filteredByWeightProducts, userFilters.ratings)
+    console.log(filteredByWeightProducts)
+    
+    // const filteredByWeightProducts = filteredByCategoryProducts.filter(({weight})=> (userFilters.weight).min<weight && weight<(userFilters.weight).max)
+    
 
     return (
         <>
         <ChakraProvider>
-        {filteredByPriceProducts.length ? filteredByPriceProducts?.map(eachProduct => <Link to={`/products/${eachProduct._id}`}><ProductCard  {...eachProduct}/></Link> ) : <h2>No products found</h2>}
+        {filteredByRatingsProducts.length ? filteredByRatingsProducts?.map(eachProduct => <ProductCard  {...eachProduct}/>) : <h2>No products found</h2>}
         </ChakraProvider>
         </>
     )
