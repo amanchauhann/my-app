@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { ContextData } from "../../../../../index"
-import RatingsInput from "../../../../Action/ListedProducts/inputs/RatingsInput"
+import {RatingsInput} from "../../../../Action/ListedProducts/inputs"
 import { ratingsFilterData } from "./Data"
 
 export const Ratings = () => {

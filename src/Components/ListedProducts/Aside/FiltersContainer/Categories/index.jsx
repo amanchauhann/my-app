@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import CategoryInput from "../../../../Action/ListedProducts/inputs/CategoryInput"
+import {CategoryInput} from "../../../../Action/ListedProducts/inputs"
 import { ContextData } from "../../../../../index"
 
 export const Categories = () => {

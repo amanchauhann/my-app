@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import WeightInput from "../../../../Action/ListedProducts/inputs/WeightInput"
+import {WeightInput} from "../../../../Action/ListedProducts/inputs"
 import { ContextData } from "../../../../../index"
 import {weightFilterData} from "./Data"
 
