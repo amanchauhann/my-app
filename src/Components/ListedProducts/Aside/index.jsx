@@ -12,9 +12,7 @@ import { FiltersContainer } from "./FiltersContainer";
 
 
 const Aside = () => {
-    const {categoriesData,priceHandler, categoryHandler, weightHandler, ratingHandler, resetFilters, userFilters, filteredPrice} = useContext(ContextData)
-    const {price, categories, weight: {min, max}, ratings} = userFilters
-console.log(categoriesData)
+    const {resetFilters} = useContext(ContextData)
     
     return (
         <div className="aside">
@@ -22,44 +20,7 @@ console.log(categoriesData)
             <p className="filter-heading-bold">Filters</p>
             <p className="clear-filters" onClick={resetFilters}>Clear</p>
             </div>
-
             <FiltersContainer />
-
-            {/* <div className="filter-container">
-            <p className="filter-heading-bold">Categories</p>
-            <div className="filter-container"></div>
-            </div> */}
-
-            {/* ===Price=== */}
-            {/* <div className="price-filter">
-                <p className="filter-heading-bold">Price</p>
-                <Price />
-            </div> */}
-
-            {/* ===CATEGORIES=== */}
-            {/* <div className="categories-filter">
-                <p className="filter-heading-bold">Categories</p>
-                <div className="filter-category-container filter-container">
-                <Categories />
-                </div>
-            </div> */}
-            
-            {/* ===WEIGHT=== */}
-            {/* <div className="weight-filter">
-                <p className="filter-heading-bold">Weight</p>
-                <div className="filter-weight-container filter-container">
-                    <Weight />
-                </div>
-            </div> */}
-
-            {/* ===RATINGS=== */}
-            {/* <div className="rating-filter">
-                <p className="filter-heading-bold">Ratings</p>
-                <div className="filter-rating-container filter-container">
-                    <Ratings />
-                </div>
-            </div> */}
-        
         </div>
     )
 }

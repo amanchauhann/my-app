@@ -5,12 +5,12 @@ import {Ratings} from "../Ratings"
 
 export const filtersData = [
     {
-        type: "Category",
-        element: <Categories />
-    },
-    {
         type: "Price",
         element: <Price />
+    },
+    {
+        type: "Category",
+        element: <Categories />
     },
     {
         type: "Weight",

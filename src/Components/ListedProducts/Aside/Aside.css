@@ -23,14 +23,3 @@
 .clear-filters{
     color: grey;
 }
-
-.filter-container{
-    display: flex;
-    flex-direction: column;
-}
-
-  .filter-heading-bold{
-    font-weight: 700;
-  }
-  
-  
