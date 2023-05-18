@@ -8,7 +8,6 @@ export const FiltersContainer = () => {
                 {each.element}
             </div>
             </div>)}
-        
         </>
     )
 }

@@ -3,8 +3,8 @@ import CategoryInput from "../../../../Action/ListedProducts/inputs/CategoryInpu
 import { ContextData } from "../../../../../index"
 
 export const Categories = () => {
-    const {categoriesData,priceHandler, categoryHandler, weightHandler, ratingHandler, resetFilters, userFilters, filteredPrice} = useContext(ContextData)
-    const {price, categories, weight: {min, max}, ratings} = userFilters
+    const {categoriesData, categoryHandler, userFilters} = useContext(ContextData)
+    const {categories} = userFilters
     return(
         <>
             {categoriesData.map(({categoryName})=> <CategoryInput filterCategories={categories} category={categoryName} categoryHandler={categoryHandler} />)}

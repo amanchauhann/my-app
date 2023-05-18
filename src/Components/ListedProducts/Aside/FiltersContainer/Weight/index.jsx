@@ -4,8 +4,8 @@ import { ContextData } from "../../../../../index"
 import {weightFilterData} from "./Data"
 
 export const Weight = () => {
-    const {categoriesData,priceHandler, categoryHandler, weightHandler, ratingHandler, resetFilters, userFilters, filteredPrice} = useContext(ContextData)
-    const {price, categories, weight: {min, max}, ratings} = userFilters
+    const {weightHandler, userFilters} = useContext(ContextData)
+    const {weight: {min}} = userFilters
 
     // const weightFilterData = [
     //     {

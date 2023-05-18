@@ -4,8 +4,8 @@ import RatingsInput from "../../../../Action/ListedProducts/inputs/RatingsInput"
 import { ratingsFilterData } from "./Data"
 
 export const Ratings = () => {
-    const {categoriesData,priceHandler, categoryHandler, weightHandler, ratingHandler, resetFilters, userFilters, filteredPrice} = useContext(ContextData)
-    const {price, categories, weight: {min, max}, ratings} = userFilters
+    const {ratingHandler, userFilters} = useContext(ContextData)
+    const {ratings} = userFilters
     return (
         <>
         {ratingsFilterData.map((eachRatingData)=> <RatingsInput rating_in_filter={ratings} ratingHandler={ratingHandler} {...eachRatingData} />)}
