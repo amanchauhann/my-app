@@ -22,7 +22,6 @@ const Login = () => {
 
     //state for keeping status & message of login error
     const [loginError, setLoginError] = useState({status: "", message: ""})
-    console.log("aa",loginError)
 
     //Upon clicking "login as guest", it sets loginUserDetails as existingUser
     const loginAsGuestHandler = (e) => {
@@ -80,7 +79,7 @@ const Login = () => {
             encodedToken && localStorage.setItem('encodedToken', encodedToken);
 
             //if token exist, navigate user to previous location
-            encodedToken && navigate(userFromLocation)
+            encodedToken && navigate(userFromLocation ?? "/")
 
 
     }
