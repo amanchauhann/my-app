@@ -2,11 +2,12 @@ import { Link, Navigate, useNavigate } from "react-router-dom"
 import "../Auth.css"
 import { useContext, useEffect, useState } from "react"
 import {users} from "../../../backend/db/users"
-import { ContextData } from "../../../index"
+import { AuthContext, ContextData } from "../../../index"
 
 const Login = () => {
-    const {userFromLocation} = useContext(ContextData)
-    const navigate = useNavigate()
+    // const {userFromLocation} = useContext(ContextData)
+    // const navigate = useNavigate()
+    const {loginHandler, loginError} = useContext(AuthContext)
 
     // storing value of test user
     const existingLoginForm = {
@@ -21,7 +22,7 @@ const Login = () => {
     })
 
     //state for keeping status & message of login error
-    const [loginError, setLoginError] = useState({status: "", message: ""})
+    // const [loginError, setLoginError] = useState({status: "", message: ""})
 
     //Upon clicking "login as guest", it sets loginUserDetails as existingUser
     const loginAsGuestHandler = (e) => {
@@ -42,44 +43,45 @@ const Login = () => {
         //set email in login form.
         setLoginForm({...loginform, email: e.target.value})
         //if there was error earlier and user is now fixing it, then remove the error status and message.
-        setLoginError({status: "", message: ""})
+        // setLoginError({status: "", message: ""})
     }
 
     //setting loginUser Password
     const login_password_handler = (e) => {
         setLoginForm({...loginform, password: e.target.value})
-        setLoginError({status: "", message: ""})
+        // setLoginError({status: "", message: ""})
     }
 
     const loginUserHandler = async (e) => {
             e.preventDefault();
+            loginHandler(loginform.email, loginform.password)
         
-            // Make the POST request
-            const res = await fetch("/api/auth/login", {
-                method: "POST",
-                headers: {
-                "Content-Type": "application/json",
-                },
-                body: JSON.stringify(loginform),
-            })
-            //storing status of Response.
-            const ResStatus= res.status
+            // // Make the POST request
+            // const res = await fetch("/api/auth/login", {
+            //     method: "POST",
+            //     headers: {
+            //     "Content-Type": "application/json",
+            //     },
+            //     body: JSON.stringify(loginform),
+            // })
+            // //storing status of Response.
+            // const ResStatus= res.status
 
-            const data = await res.json()
+            // const data = await res.json()
 
-            //if there is error, we are setting it in state.
-            if(ResStatus !== 200){
-                setLoginError({status: ResStatus, message: data.errors[0]})
-            } 
+            // //if there is error, we are setting it in state.
+            // if(ResStatus !== 200){
+            //     setLoginError({status: ResStatus, message: data.errors[0]})
+            // } 
 
-            //if user exist, will get encodedToken
-            const encodedToken = await data.encodedToken
+            // //if user exist, will get encodedToken
+            // const encodedToken = await data.encodedToken
 
-            //store token in local storage, but only is user exist
-            encodedToken && localStorage.setItem('encodedToken', encodedToken);
+            // //store token in local storage, but only is user exist
+            // encodedToken && localStorage.setItem('encodedToken', encodedToken);
 
-            //if token exist, navigate user to previous location
-            encodedToken && navigate(userFromLocation ?? "/")
+            // //if token exist, navigate user to previous location
+            // encodedToken && navigate(userFromLocation ?? "/")
 
 
     }
