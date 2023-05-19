@@ -73,9 +73,10 @@ export const DataContext = ({children}) => {
     }
 
     const locationHandler = (currentLocation) =>{
-        console.log(currentLocation)
         setUserFromLocation(currentLocation.pathname)
     }
+
+
 
     return(
         <ContextData.Provider value={{categoriesData, productsData, priceHandler, categoryHandler, weightHandler, ratingHandler, sortHandler, resetFilters, userFilters, locationHandler, userFromLocation}}>
