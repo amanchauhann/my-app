@@ -15,13 +15,15 @@ makeServer();
 
 ReactDOM.render(
   <React.StrictMode>
+          <Router>
     <DataContext>
       <AuthProvider>
-      <Router>
+
     <App />
-    </Router>
+
       </AuthProvider>
     </DataContext>
+    </Router>
     
     
   </React.StrictMode>,
