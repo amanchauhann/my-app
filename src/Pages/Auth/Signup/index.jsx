@@ -1,6 +1,4 @@
 import { useContext, useState } from "react";
-import Input from "../../../Components/Auth/Input";
-import {requiredData} from "./RequiredData"
 import { AuthContext } from "../../../Contexts/auth-context";
 
 const Signup = () => {
@@ -21,10 +19,21 @@ const [password_unmatch_error, setPassword_unmatch_error] = useState("")
         setNewuserForm(prev=> ({...prev, email: e.target.value}))
     }
     const new_user_password = (e) => {
+        const password = e.target.value
+        if (password.length < 6) {
+            e.target.setCustomValidity("Password must be at least 6 characters long.");
+          } else if (!/\d/.test(password)) {
+            e.target.setCustomValidity("Password must contain at least one number.");
+          } else {
+            e.target.setCustomValidity("");
+          }
+
         setNewUserPassword(e.target.value)
+        setPassword_unmatch_error("")
     }
     const new_user_confirm_password = (e) => {
         setNewUserConfirmPassword(e.target.value)
+        setPassword_unmatch_error("")
     }
 
     const signup_form_handler = async(e) => {
@@ -76,6 +85,7 @@ const [password_unmatch_error, setPassword_unmatch_error] = useState("")
                         <label for="confirm_password_for_signup">Confirm Password:</label>
                         <input required className="auth-input" type="password" placeholder="*******" id="confirm_password_for_signup" onChange={new_user_confirm_password}/>
                     </div>
+                    <p className="login-error">{password_unmatch_error}</p>
                     <div className="button-container">
                         <button type="submit" className="auth-button">Sign up</button>
                     </div>
