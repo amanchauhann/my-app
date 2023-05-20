@@ -75,16 +75,16 @@ const [password_unmatch_error, setPassword_unmatch_error] = useState("")
                     <div className="auth-card-item">
                         {/* <Input id={"email_for_signup"} type={"email"} placeholder={"dummy@gmail.com"} label={"Email address"}/> */}
                         <label for="email_for_signup">Email Address:</label>
-                        <input required className="auth-input" type="email" placeholder="dummy@gmail.com" id="email_for_signup" onChange={signup_email_handler}/>
+                        <input required className={`auth-input ${signupError.status && "error_input"}`}type="email" placeholder="dummy@gmail.com" id="email_for_signup" onChange={signup_email_handler}/>
                     </div>
 
                     <div className="auth-card-item">
                         <label for="password_for_signup">Password:</label>
-                        <input required className="auth-input" type="password" placeholder="*******" id="password_for_signup" onChange={new_user_password}/>
+                        <input required className={`auth-input ${password_unmatch_error && "error_input"}`} type="password" placeholder="*******" id="password_for_signup" onChange={new_user_password}/>
                     </div>
                     <div className="auth-card-item">
                         <label for="confirm_password_for_signup">Confirm Password:</label>
-                        <input required className="auth-input" type="password" placeholder="*******" id="confirm_password_for_signup" onChange={new_user_confirm_password}/>
+                        <input required className={`auth-input ${password_unmatch_error && "error_input"}`} type="password" placeholder="*******" id="confirm_password_for_signup" onChange={new_user_confirm_password}/>
                     </div>
                     <p className="login-error">{password_unmatch_error}</p>
                     <p className="login-error">{signupError.status} {signupError.message}</p>

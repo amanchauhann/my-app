@@ -39,7 +39,7 @@
     gap: 10px;
 }
 
-.auth-card-item input{
+.auth-input{
     height: 40px;
     border: 1px solid grey;
     border-radius: 5px;
@@ -56,6 +56,10 @@
     font-size: 16px;
     transition: 2s;
     color: red;
+}
+
+.error_input{
+    border: 1px solid red;
 }
 
 .button-container{
