@@ -7,7 +7,7 @@ import { AuthContext, ContextData } from "../../../index"
 const Login = () => {
     // const {userFromLocation} = useContext(ContextData)
     // const navigate = useNavigate()
-    const {loginHandler, loginError} = useContext(AuthContext)
+    const {loginHandler, loginError, setLoginError} = useContext(AuthContext)
 
     // storing value of test user
     const existingLoginForm = {
@@ -43,13 +43,13 @@ const Login = () => {
         //set email in login form.
         setLoginForm({...loginform, email: e.target.value})
         //if there was error earlier and user is now fixing it, then remove the error status and message.
-        // setLoginError({status: "", message: ""})
+        setLoginError({status: "", message: ""})
     }
 
     //setting loginUser Password
     const login_password_handler = (e) => {
         setLoginForm({...loginform, password: e.target.value})
-        // setLoginError({status: "", message: ""})
+        setLoginError({status: "", message: ""})
     }
 
     const loginUserHandler = async (e) => {

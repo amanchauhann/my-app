@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../../Contexts/auth-context";
 
 const Signup = () => {
-    const {signupHandler} = useContext(AuthContext)
+    const {signupHandler, signupError, setSignupError} = useContext(AuthContext)
     const [newUserForm, setNewuserForm] = useState({
     email: "",
     password: "",
@@ -17,6 +17,7 @@ const [password_unmatch_error, setPassword_unmatch_error] = useState("")
     
     const signup_email_handler = (e) => {
         setNewuserForm(prev=> ({...prev, email: e.target.value}))
+        setSignupError({status: "", message: ""})
     }
     const new_user_password = (e) => {
         const password = e.target.value
@@ -86,6 +87,7 @@ const [password_unmatch_error, setPassword_unmatch_error] = useState("")
                         <input required className="auth-input" type="password" placeholder="*******" id="confirm_password_for_signup" onChange={new_user_confirm_password}/>
                     </div>
                     <p className="login-error">{password_unmatch_error}</p>
+                    <p className="login-error">{signupError.status} {signupError.message}</p>
                     <div className="button-container">
                         <button type="submit" className="auth-button">Sign up</button>
                     </div>
