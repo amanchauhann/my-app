@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { LoginService } from "../Services";
+import { LoginService, SignupService } from "../Services";
 import { useNavigate } from "react-router";
 import { ContextData } from "./data-context";
 
@@ -22,8 +22,15 @@ export const AuthProvider = ({children}) => {
 
             encodedToken && navigate(userFromLocation ?? "/")
     }
+
+    const signupHandler = async(email, password, name) => {
+        const {data, status} = await (SignupService(email, password, name))
+        const encodedToken = await data.encodedToken
+            localStorage.setItem('userDetails', JSON.stringify({encodedToken: encodedToken, user: data.createdUser}));
+            encodedToken && navigate(userFromLocation ?? "/")
+    }
     return(
-        <AuthContext.Provider value={{loginHandler, loginError}}>
+        <AuthContext.Provider value={{loginHandler, loginError, signupHandler}}>
             {children}
         </AuthContext.Provider>
     )
