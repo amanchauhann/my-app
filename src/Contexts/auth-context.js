@@ -42,6 +42,8 @@ export const AuthProvider = ({ children }) => {
         setLogged_User(userData)
         encodedToken && navigate(userFromLocation ?? "/")
         // const encodedToken = await data.encodedToken
+
+        // const encodedToken = await data.encodedToken
         localStorage.setItem('userDetails', JSON.stringify({ encodedToken: encodedToken, user: data.foundUser }));
         toast.success('🦄 Wow so easy!', {
             position: "bottom-right",
