@@ -8,6 +8,8 @@ import { ContextData } from "./index";
 import ListedProducts from "./Pages/ListedProducts";
 import Mockman from "mockman-js"
 import ProductDetail from "./Pages/ProductDetail";
+import Login from "./Pages/Auth/Login";
+import Signup from "./Pages/Auth/Signup";
 
 function App() {
   const location = useLocation();
@@ -24,6 +26,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ListedProducts />} />
         <Route path="/products/:ProductID" element={<ProductDetail />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup/>} />
         <Route path="/mockman" element={<Mockman />} />
       </Routes>
       <Footer />

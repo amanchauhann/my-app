@@ -14,6 +14,7 @@ export const DataContext = ({ children }) => {
         ratings: null,
         sort: ""
     })
+    const [userFromLocation, setUserFromLocation] = useState()
     const [selectedProduct, setSelectedProduct] = useState([])
     const { ProductID } = useParams()
     // console.log(ProductID)
@@ -71,8 +72,15 @@ export const DataContext = ({ children }) => {
         setUserFilters(prev => ({ ...prev, sort: e.target.value }))
     }
 
-    return (
-        <ContextData.Provider value={{ categoriesData, productsData, priceHandler, categoryHandler, weightHandler, ratingHandler, sortHandler, resetFilters, userFilters }}>
+
+    const locationHandler = (currentLocation) =>{
+        setUserFromLocation(currentLocation.pathname)
+    }
+
+
+
+    return(
+        <ContextData.Provider value={{categoriesData, productsData, priceHandler, categoryHandler, weightHandler, ratingHandler, sortHandler, resetFilters, userFilters, locationHandler, userFromLocation}}>
             {children}
         </ContextData.Provider>
     )
