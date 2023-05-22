@@ -8,24 +8,23 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { DataContext, ContextData } from "./Contexts/data-context";
 import { AuthProvider, AuthContext } from "./Contexts/auth-context";
 
-export {ContextData, AuthContext}
+export { ContextData, AuthContext }
 
 // Call make Server
 makeServer();
 
 ReactDOM.render(
-  <React.StrictMode>
-          <Router>
+  <Router>
     <DataContext>
       <AuthProvider>
 
-    <App />
+        <App />
 
       </AuthProvider>
     </DataContext>
-    </Router>
-    
-    
-  </React.StrictMode>,
+  </Router>
+
+
+  ,
   document.getElementById("root")
 );

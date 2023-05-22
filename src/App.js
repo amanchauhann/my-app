@@ -10,16 +10,33 @@ import Mockman from "mockman-js"
 import ProductDetail from "./Pages/ProductDetail";
 import Login from "./Pages/Auth/Login";
 import Signup from "./Pages/Auth/Signup";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 function App() {
   const location = useLocation();
   const shouldDisplayNav = location.pathname !== "/";
-// const {productsData} = useContext(ContextData)
-// console.log(productsData.products)
+  // const {productsData} = useContext(ContextData)
+  // console.log(productsData.products)
   return (
     <div className="App">
-      <div style={{background: "rgb(53, 53, 53)"}}>
-      {shouldDisplayNav && <Nav />}
+      <ToastContainer
+        position="top-right"
+        autoClose={1500}
+        hideProgressBar={false}
+        // newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        // pauseOnFocusLoss
+        // draggable
+        pauseOnHover
+        theme="light"
+      />
+      {/* Same as */}
+      <ToastContainer />
+      <div style={{ background: "rgb(53, 53, 53)" }}>
+        {shouldDisplayNav && <Nav />}
 
       </div>
       <Routes>
@@ -27,7 +44,7 @@ function App() {
         <Route path="/products" element={<ListedProducts />} />
         <Route path="/products/:ProductID" element={<ProductDetail />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup/>} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/mockman" element={<Mockman />} />
       </Routes>
       <Footer />
