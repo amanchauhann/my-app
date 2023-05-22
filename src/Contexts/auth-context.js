@@ -21,8 +21,9 @@ export const AuthProvider = ({ children }) => {
         pincode: '820598',
         state: 'Arunachal Pradesh',
     }])
-    const [address, setAddress] = useState(logged_user?.address && [...logged_user?.address])
+    const [address, setAddress] = useState(logged_user?.address && logged_user?.address)
     const { userFromLocation } = useContext(ContextData)
+    console.log("pp", address)
     // console.log(userFromLocation)
     const navigate = useNavigate()
     const [loginError, setLoginError] = useState({ status: "", message: "" })
@@ -36,15 +37,16 @@ export const AuthProvider = ({ children }) => {
 
         const encodedToken = await data.encodedToken
         const userData = { ...data.foundUser, address: initialAddress }
+        setAddress(initialAddress)
 
-        localStorage.setItem('userDetails', JSON.stringify({ encodedToken: encodedToken, user: userData }));
+        { encodedToken && localStorage.setItem('userDetails', JSON.stringify({ encodedToken: encodedToken, user: userData })) }
         setAuth_Token(encodedToken)
         setLogged_User(userData)
         encodedToken && navigate(userFromLocation ?? "/")
         // const encodedToken = await data.encodedToken
 
         // const encodedToken = await data.encodedToken
-        localStorage.setItem('userDetails', JSON.stringify({ encodedToken: encodedToken, user: data.foundUser }));
+        // localStorage.setItem('userDetails', JSON.stringify({ encodedToken: encodedToken, user: data.foundUser }));
         toast.success('🦄 Wow so easy!', {
             position: "bottom-right",
             autoClose: 1500,
@@ -55,8 +57,8 @@ export const AuthProvider = ({ children }) => {
             progress: undefined,
             theme: "colored",
         });
-
-        encodedToken && navigate(userFromLocation ?? "/")
+        console.log("just for you", userData)
+        // encodedToken && navigate(userFromLocation ?? "/")
     }
 
     const signupHandler = async (email, password, name) => {
@@ -67,13 +69,14 @@ export const AuthProvider = ({ children }) => {
             setSignupError({ status: status, message: data.errors[0] })
         }
         const userData = { ...data.createdUser, address: initialAddress }
-        localStorage.setItem('userDetails', JSON.stringify({ encodedToken: encodedToken, user: userData }));
+        setAddress(initialAddress)
+        { encodedToken && localStorage.setItem('userDetails', JSON.stringify({ encodedToken: encodedToken, user: userData })) };
         setAuth_Token(encodedToken)
         setLogged_User(userData)
         encodedToken && navigate(userFromLocation ?? "/")
     }
     useEffect(() => {
-        if (address) {
+        if (address !== undefined && auth_token) {
             const DataWithNewAddress = { ...logged_user, address: address }
             localStorage.setItem('userDetails', JSON.stringify({ encodedToken: auth_token, user: DataWithNewAddress }))
             setLogged_User(DataWithNewAddress)
