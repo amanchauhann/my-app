@@ -1,6 +1,4 @@
 .aside{
-    /* border: 2px solid purple; */
-    /* min-width: max-content; */
     padding: 0 1rem;
     flex: 0 0 250px;
     align-self: flex-start;
@@ -10,21 +8,11 @@
     gap: 2rem;
 }
 
-.aside>*{
-    /* border: 2px solid orange; */
-}
-
-.price-slider{
-    min-width: 200px;
-}
-
-.filter-container{
+.aside-filters-upper-container{
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
 }
 
-  .p-aside{
-    font-weight: 700;
-  }
-  
-  
+.clear-filters{
+    color: grey;
+}

@@ -1,9 +1,11 @@
-
+.ProductListing{
+    flex-grow: 1;
+}
 
 .products-listed-card-container{
     display: flex;
     flex-wrap: wrap;
-    /* justify-content: space-evenly; */
+    justify-content: flex-start;
     gap: 1rem;
 }
 .headingtwo {

@@ -1,11 +1,13 @@
 import { Card, CardBody, Image, Stack, Heading, Text, Divider, CardFooter, ButtonGroup, Button } from '@chakra-ui/react';
-import outofstock from "../../../../assets/Utils/outofstock.png"
+import outofstock from "../../../../Logos/Utils/outofstock.png"
+import { Link } from 'react-router-dom';
 
-const ProductCard = ({productImage, ratings, title, price, availability}) => {
+const ProductCard = ({productImage, ratings, title, price, availability, _id}) => {
   const soldOut = !availability;
     return(
         <div style={{borderTop: "5px solid rgb(60,69,69, 0.8)", position: "relative"}}>
         <Card maxW='xs'>
+        <Link to={`/products/${_id}`}>
   <CardBody>
     <Image
       src={productImage}
@@ -31,6 +33,7 @@ const ProductCard = ({productImage, ratings, title, price, availability}) => {
       </Text>
     </Stack>
   </CardBody>
+  </Link>
   <Divider />
   <CardFooter>
     <ButtonGroup spacing='2'>
@@ -44,7 +47,7 @@ const ProductCard = ({productImage, ratings, title, price, availability}) => {
     </ButtonGroup>
   </CardFooter>
 </Card>
-{soldOut && <img src={outofstock} style={{width: "100px", position: "absolute", top: "-25px", right: "13px", opacity: "0.4,", transform: "rotate(-30deg)"}}/>}
+{soldOut && <img src={outofstock} style={{width: "100px", position: "absolute", top: "-25px", right: "13px", opacity: "0.5", transform: "rotate(-30deg)"}}/>}
         </div>
         
     )

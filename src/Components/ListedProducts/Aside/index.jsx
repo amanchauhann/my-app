@@ -1,78 +1,26 @@
+import { useContext, useState } from "react";
 import "./Aside.css";
+import { ContextData } from "../../../index";
+import CategoryInput from "../../Action/ListedProducts/inputs/CategoryInput";
+import WeightInput from "../../Action/ListedProducts/inputs/WeightInput";
+import RatingsInput from "../../Action/ListedProducts/inputs/RatingsInput";
+import { Price } from "./FiltersContainer/Price";
+import { Categories } from "./FiltersContainer/Categories";
+import { Weight } from "./FiltersContainer/Weight";
+import { Ratings } from "./FiltersContainer/Ratings";
+import { FiltersContainer } from "./FiltersContainer";
+
 
 const Aside = () => {
+    const {resetFilters} = useContext(ContextData)
+    
     return (
         <div className="aside">
-            <p className="filter-heading-bold p-aside">Filters</p>
-            <div className="price-filter">
-                <p className="filter-heading-bold p-aside">Price</p>
-                <input className="price-slider" type="range" min="0" max="10000" />
+            <div className="aside-filters-upper-container">
+            <p className="filter-heading-bold">Filters</p>
+            <p className="clear-filters" onClick={resetFilters}>Clear</p>
             </div>
-            <div className="categories-filter">
-                <p className="filter-heading-bold p-aside">Categories</p>
-                <div className="filter-category-container filter-container">
-                <label>
-                <input type="checkbox" name="filter-category-check" />
-                Camera
-                </label>
-                <label>
-                <input type="checkbox" name="filter-category-check" />
-                Mini
-                </label>
-                <label>
-                <input type="checkbox" name="filter-category-check" />
-                Agriculture
-                </label>
-                </div>
-            </div>
-            <div className="weight-filter">
-                <p className="filter-heading-bold p-aside">Weight</p>
-                <div className="filter-weight-container filter-container">
-                    <label>
-                        <input type="radio" name="filter-weight-select" />
-                        Above 5kg
-                    </label>
-                    <label>
-                        <input type="radio" name="filter-weight-select" />
-                        3-5kg
-                    </label>
-                    <label>
-                        <input type="radio" name="filter-weight-select" />
-                        1-3kg
-                    </label>
-                    <label>
-                        <input type="radio" name="filter-weight-select" />
-                        upto 1kg
-                    </label>
-                    
-
-                </div>
-            </div>
-
-            <div className="rating-filter">
-                <p className="filter-heading-bold p-aside">Ratings</p>
-                <div className="filter-rating-container filter-container">
-                    <label>
-                        <input type="radio" name="filter-rating-select" />
-                        4 star & above
-                    </label>
-                    <label>
-                        <input type="radio" name="filter-rating-select" />
-                        3 star & above
-                    </label>
-                    <label>
-                        <input type="radio" name="filter-rating-select" />
-                        2 star & above
-                    </label>
-                    <label>
-                        <input type="radio" name="filter-weight-select" />
-                        1 star & above
-                    </label>
-                    
-
-                </div>
-            </div>
-        
+            <FiltersContainer />
         </div>
     )
 }
