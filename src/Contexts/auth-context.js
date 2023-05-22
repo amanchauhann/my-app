@@ -3,6 +3,7 @@ import { LoginService, SignupService } from "../Services";
 import { useNavigate } from "react-router";
 import { ContextData } from "./data-context";
 import { toast } from "react-toastify";
+import { successToast } from "../Extra";
 
 export const AuthContext = createContext()
 
@@ -47,16 +48,7 @@ export const AuthProvider = ({ children }) => {
 
         // const encodedToken = await data.encodedToken
         // localStorage.setItem('userDetails', JSON.stringify({ encodedToken: encodedToken, user: data.foundUser }));
-        toast.success('🦄 Wow so easy!', {
-            position: "bottom-right",
-            autoClose: 1500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            // draggable: true,
-            progress: undefined,
-            theme: "colored",
-        });
+        encodedToken && successToast("WOW")
         console.log("just for you", userData)
         // encodedToken && navigate(userFromLocation ?? "/")
     }
