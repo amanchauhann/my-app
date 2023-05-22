@@ -13,6 +13,10 @@ import Signup from "./Pages/Auth/Signup";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import Profile from "./Pages/Profile";
+import Details from "./Components/Profile/Details";
+import Address from "./Components/Profile/Address";
+import Logout from "./Pages/Auth/Logout";
 
 function App() {
   const location = useLocation();
@@ -44,8 +48,14 @@ function App() {
         <Route path="/products" element={<ListedProducts />} />
         <Route path="/products/:ProductID" element={<ProductDetail />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/mockman" element={<Mockman />} />
+        <Route path="/profile" element={<Profile />} >
+          <Route path="details" element={<Details />} />
+          <Route path="address" element={<Address />} />
+        </Route>
+
       </Routes>
       <Footer />
     </div>
