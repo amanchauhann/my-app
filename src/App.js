@@ -13,13 +13,10 @@ import Signup from "./Pages/Auth/Signup";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-<<<<<<< Updated upstream
 import Profile from "./Pages/Profile";
 import Details from "./Components/Profile/Details";
 import Address from "./Components/Profile/Address";
 import Logout from "./Pages/Auth/Logout";
-=======
->>>>>>> Stashed changes
 
 function App() {
   const location = useLocation();
