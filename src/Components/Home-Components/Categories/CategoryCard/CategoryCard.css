@@ -59,8 +59,11 @@
   color: currentColor;
   border-bottom: 1px solid transparent;
   transition: 0.2s ease-in-out;
+  max-width: fit-content;
+  margin: auto;
 }
 
 .category-explore:hover {
   border-bottom: 1px solid currentColor;
+  cursor: pointer;
 }
