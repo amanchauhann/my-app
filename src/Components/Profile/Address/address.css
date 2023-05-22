@@ -1,0 +1,33 @@
+.profile_address_main {
+    border: 1px solid red;
+    padding: 1rem;
+    max-width: 500px;
+}
+
+.address_title {
+    margin: 2rem 0 30px 0;
+    width: fit-content;
+    border-bottom: 2px solid black;
+    padding-bottom: 5px;
+}
+
+.add_address {
+    border: 3px dashed black;
+    padding: 2.5rem;
+    text-align: center;
+    margin: 1rem 0 0 0;
+    background: transparent;
+    transition: 1s;
+}
+
+.add_address:hover {
+    background: rgb(218, 215, 215);
+    cursor: pointer;
+}
+
+
+.address_card_container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}

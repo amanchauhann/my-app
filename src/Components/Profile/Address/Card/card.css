@@ -1,0 +1,35 @@
+.address_card_content{
+    /* border: 1px solid black; */
+    display: flex;
+}
+
+.address_card_content>*{
+    border: 1px solid grey;
+    padding: 1rem 1rem;
+}
+
+.profile_address_container{
+    border: 1px solid grey;
+    padding: 1rem;
+    box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+.profile_address_container p{
+    margin: 5px 0;
+}
+
+.address_card_name{
+    margin-bottom: 30px;
+}
+
+.address_card_upper{
+    /* border: 1px solid red; */
+}
+
+.address_card_lower{
+    /* border: 1px solid red; */
+}
+
+.font_weight{
+    font-weight: 500;
+}
