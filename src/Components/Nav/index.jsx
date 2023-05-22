@@ -10,32 +10,8 @@ const Nav = () => {
     const { locationHandler, auth_token } = useContext(AuthContext);
     const [search_value, setSearch_value] = useState("");
     const [suggestions, setSuggestions] = useState([]);
-    const [is_suggestion_visible, setIs_Suggestion_visible] = useState(false);
-    const [is_input_focussed, setIs_Input_Focussed] = useState(false)
-    const suggestionContainerRef = useRef(null);
 
     const { productsData } = useContext(ContextData);
-
-    useEffect(() => {
-        // Attach click event listener to the document
-        document.addEventListener("click", handleClickOutside);
-
-        return () => {
-            // Cleanup: remove the event listener
-            document.removeEventListener("click", handleClickOutside);
-        };
-    }, []);
-
-    const handleClickOutside = (event) => {
-        // Check if the click event occurred outside the suggestion container
-        if (
-            suggestionContainerRef.current &&
-            !suggestionContainerRef.current.contains(event.target)
-        ) {
-            // Hide the suggestion container
-            setIs_Suggestion_visible(false);
-        }
-    };
 
     const search_value_handler = (e) => {
         setSearch_value(e.target.value);
@@ -44,18 +20,7 @@ const Nav = () => {
                 title.toLowerCase().includes(e.target.value.toLowerCase().trim())
             )
         );
-
-        // Show or hide the suggestion container based on the search value
-        setIs_Suggestion_visible(e.target.value.length > 0);
     };
-
-    const handle_focus = () => {
-        setIs_Input_Focussed(true)
-    }
-
-    const handle_blur = () => {
-        setIs_Input_Focussed(false)
-    }
 
     return (
         <>
@@ -71,15 +36,14 @@ const Nav = () => {
                         placeholder="search here..."
                         onChange={search_value_handler}
                         value={search_value}
-                        onFocus={handle_focus}
-                        onBlur={handle_blur}
                     />
-                    {is_input_focussed && search_value && (
-                        <div className="suggestion_container" ref={suggestionContainerRef}>
+                    {search_value.length > 0 && (
+                        <div className="suggestion_container">
                             {suggestions.length > 0 ? (
-                                suggestions.map(({ title, productImage, brand, price, id }) => (
-                                    <Link to={`/products/${id}`}>
-                                        <li className="suggestion_list">
+                                suggestions.map(({ title, productImage, brand, price, _id }) => (
+
+                                    <li className="suggestion_list">
+                                        <Link to={`/products/${_id}`} onClick={() => setSearch_value("")}>
                                             <div className="each_suggestion">
                                                 <div className="suggestion_img_container">
                                                     <img src={productImage} alt="Product" />
@@ -92,8 +56,9 @@ const Nav = () => {
                                                     <div className="text_md">{title}</div>
                                                 </div>
                                             </div>
-                                        </li>
-                                    </Link>
+                                        </Link>
+                                    </li>
+
 
                                 ))
                             ) :
