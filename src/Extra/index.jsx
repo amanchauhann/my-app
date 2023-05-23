@@ -15,7 +15,7 @@ export const successToast = (success_text) => {
     )
 }
 
-export const errorToast = ({ red_toast_text }) => {
+export const errorToast = (red_toast_text) => {
     return (
         toast.error(`${red_toast_text}`, {
             position: "bottom-right",
