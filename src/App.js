@@ -17,6 +17,7 @@ import Profile from "./Pages/Profile";
 import Details from "./Components/Profile/Details";
 import Address from "./Components/Profile/Address";
 import Logout from "./Pages/Auth/Logout";
+import Wishlist from "./Pages/Wishlist";
 
 function App() {
   const location = useLocation();
@@ -55,7 +56,7 @@ function App() {
           <Route path="details" element={<Details />} />
           <Route path="address" element={<Address />} />
         </Route>
-
+        <Route path="/wishlist" element={<Wishlist />} />
       </Routes>
       <Footer />
     </div>

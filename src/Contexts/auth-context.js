@@ -123,7 +123,7 @@ export const AuthProvider = ({ children }) => {
         console.log("amanan", get_wishlist_deletion)
         const DataUpdatedWishlist = await { ...logged_user, wishlist: get_wishlist_deletion }
         setLogged_User(DataUpdatedWishlist)
-        setWishlistData(DataUpdatedWishlist)
+        setWishlistData(get_wishlist_deletion)
         localStorage.setItem('userDetails', JSON.stringify({ encodedToken: auth_token, user: DataUpdatedWishlist }))
         // console.log("aaaaaaaaaa", i)
         // const DataUpdatedWishlist = { ...logged_user, wishlist: logged_user?.wishlist.filter(({ _id }) => _id !== i) }
