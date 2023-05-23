@@ -106,7 +106,7 @@ export const AuthProvider = ({ children }) => {
         if (status !== 201) {
             setWishlistError(status, get_wishlist.errors[0])
         }
-        const data_with_update_wishlist = { ...logged_user, wishlist: get_wishlist }
+        const data_with_update_wishlist = { ...logged_user, wishlist: [product, ...logged_user.wishlist] }
         // console.log(wishlist)
         setLogged_User(data_with_update_wishlist)
         setWishlistData(get_wishlist)
@@ -120,7 +120,6 @@ export const AuthProvider = ({ children }) => {
     const removeWishlistHandler = async (i) => {
         const { get_wishlist_deletion, status } = await wishlistDeleteService(auth_token, i)
 
-        console.log("amanan", status)
         const DataUpdatedWishlist = await { ...logged_user, wishlist: get_wishlist_deletion }
         if (status === 200) {
             errorToast("Product removed from wishlist")
