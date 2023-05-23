@@ -14,3 +14,18 @@ export const successToast = (success_text) => {
         })
     )
 }
+
+export const errorToast = ({ red_toast_text }) => {
+    return (
+        toast.error(`${red_toast_text}`, {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        })
+    )
+} 

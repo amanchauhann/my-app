@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { LoginService, SignupService } from "../Services";
+import { LoginService, SignupService, wishlistDeleteService, wishlistService } from "../Services";
 import { useNavigate } from "react-router";
 import { ContextData } from "./data-context";
 import { toast } from "react-toastify";
@@ -12,6 +12,7 @@ export const AuthProvider = ({ children }) => {
     // console.log("initial", userDetail_local_storage)
     const [auth_token, setAuth_Token] = useState(userDetail_local_storage?.encodedToken)
     const [logged_user, setLogged_User] = useState(userDetail_local_storage?.user);
+    const [wishlistData, setWishlistData] = useState(logged_user?.wishlist || logged_user?.wishlist || [])
     const [initialAddress, setInitialAddress] = useState([{
         street: '8505 Christina Ridges',
         alternatemobile: 4878794411,
@@ -23,12 +24,13 @@ export const AuthProvider = ({ children }) => {
         state: 'Arunachal Pradesh',
     }])
     const [address, setAddress] = useState(logged_user?.address && logged_user?.address)
-    const { userFromLocation } = useContext(ContextData)
+    const { userFromLocation, prod } = useContext(ContextData)
     console.log("pp", address)
     // console.log(userFromLocation)
     const navigate = useNavigate()
     const [loginError, setLoginError] = useState({ status: "", message: "" })
     const [signupError, setSignupError] = useState({ status: "", message: "" })
+    const [wishlistError, setWishlistError] = useState("")
 
     const loginHandler = async (email, password) => {
         const { data, ResStatus } = await (LoginService(email, password))
@@ -48,7 +50,7 @@ export const AuthProvider = ({ children }) => {
 
         // const encodedToken = await data.encodedToken
         // localStorage.setItem('userDetails', JSON.stringify({ encodedToken: encodedToken, user: data.foundUser }));
-        encodedToken && successToast("WOW")
+        encodedToken && successToast("Successfully logged in")
         console.log("just for you", userData)
         // encodedToken && navigate(userFromLocation ?? "/")
     }
@@ -98,8 +100,39 @@ export const AuthProvider = ({ children }) => {
         setAuth_Token(null);
         setLogged_User(null);
     }
+
+    const wishListHandler = async (product) => {
+        const { get_wishlist, status } = await (wishlistService(auth_token, product))
+        if (status !== 201) {
+            setWishlistError(status, get_wishlist.errors[0])
+        }
+        const data_with_update_wishlist = { ...logged_user, wishlist: get_wishlist }
+        // console.log(wishlist)
+        setLogged_User(data_with_update_wishlist)
+        setWishlistData(get_wishlist)
+        localStorage.setItem('userDetails', JSON.stringify({ encodedToken: auth_token, user: data_with_update_wishlist }))
+        if (status === 201) {
+            successToast(`${product.title} has been added to wishlist.`)
+        }
+
+    }
+
+    const removeWishlistHandler = async (i) => {
+        const { get_wishlist_deletion, status } = await wishlistDeleteService(auth_token, i)
+
+        console.log("amanan", get_wishlist_deletion)
+        const DataUpdatedWishlist = await { ...logged_user, wishlist: get_wishlist_deletion }
+        setLogged_User(DataUpdatedWishlist)
+        setWishlistData(DataUpdatedWishlist)
+        localStorage.setItem('userDetails', JSON.stringify({ encodedToken: auth_token, user: DataUpdatedWishlist }))
+        // console.log("aaaaaaaaaa", i)
+        // const DataUpdatedWishlist = { ...logged_user, wishlist: logged_user?.wishlist.filter(({ _id }) => _id !== i) }
+        // localStorage.setItem('userDetails', JSON.stringify({ encodedToken: auth_token, user: DataUpdatedWishlist }))
+        // setLogged_User(DataUpdatedWishlist)
+
+    }
     return (
-        <AuthContext.Provider value={{ loginHandler, setLoginError, loginError, signupHandler, setSignupError, signupError, auth_token, logged_user, setAddress, delete_handler, update_handler, logout_handler, address }}>
+        <AuthContext.Provider value={{ loginHandler, setLoginError, loginError, signupHandler, setSignupError, signupError, auth_token, logged_user, setAddress, delete_handler, update_handler, logout_handler, address, wishListHandler, wishlistData, removeWishlistHandler }}>
             {children}
         </AuthContext.Provider>
     )

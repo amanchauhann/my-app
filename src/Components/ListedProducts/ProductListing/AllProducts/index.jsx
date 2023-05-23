@@ -1,7 +1,7 @@
 import { ChakraProvider } from "@chakra-ui/react"
 import ProductCard from "../ProductListedCard"
 import { useContext } from "react"
-import { ContextData } from "../../../../index"
+import { AuthContext, ContextData } from "../../../../index"
 import { getFilteredByCategoriesProducts, getFilteredByPriceProducts, getFilteredByRatingProducts, getFilteredByWeightProducts } from "../../../../utils"
 
 const AllProducts = () => {
@@ -15,10 +15,13 @@ const AllProducts = () => {
 
     const sortedAndFilteredData = userFilters.sort ? userFilters.sort === "low-to-high" ? filteredByRatingsProducts.sort(function (a, b) { return a.price - b.price }) : filteredByRatingsProducts.sort(function (a, b) { return b.price - a.price }) : filteredByRatingsProducts
 
+
+    const { wishListHandler, removeWishlistHandler } = useContext(AuthContext)
+
     return (
         <>
             <ChakraProvider>
-                {sortedAndFilteredData.length ? sortedAndFilteredData?.map(eachProduct => <ProductCard  {...eachProduct} />) : <h2>No products found</h2>}
+                {sortedAndFilteredData.length ? sortedAndFilteredData?.map(eachProduct => <ProductCard wishlist_btn_handler={() => wishListHandler(eachProduct)} remove_wishlist_btn_handler={() => removeWishlistHandler(eachProduct._id)} {...eachProduct} />) : <h2>No products found</h2>}
             </ChakraProvider>
         </>
     )
