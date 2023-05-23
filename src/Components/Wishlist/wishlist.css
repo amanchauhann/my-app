@@ -1,0 +1,7 @@
+.wishlist_cards_container {
+    border: 1px solid red;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+}

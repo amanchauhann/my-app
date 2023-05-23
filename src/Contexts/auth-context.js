@@ -126,7 +126,7 @@ export const AuthProvider = ({ children }) => {
             errorToast("Product removed from wishlist")
         }
         setLogged_User(DataUpdatedWishlist)
-        setWishlistData(DataUpdatedWishlist)
+        setWishlistData(get_wishlist_deletion)
         localStorage.setItem('userDetails', JSON.stringify({ encodedToken: auth_token, user: DataUpdatedWishlist }))
         // console.log("aaaaaaaaaa", i)
         // const DataUpdatedWishlist = { ...logged_user, wishlist: logged_user?.wishlist.filter(({ _id }) => _id !== i) }

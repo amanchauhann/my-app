@@ -1,0 +1,18 @@
+.wishlist_container {
+    /* border: 4px solid green; */
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding: 3rem;
+    text-align: center;
+}
+
+.wishlist_heading {
+    border: 1px solid red;
+    font-size: 2rem;
+    font-weight: 700;
+    border-bottom: 5px solid rgb(176, 149, 149);
+    padding: 1rem;
+    max-width: fit-content;
+    margin: auto;
+}
