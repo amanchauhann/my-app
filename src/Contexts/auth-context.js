@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { LoginService, SignupService, wishlistDeleteService, wishlistService } from "../Services";
+import { LoginService, SignupService, addToCartService, wishlistDeleteService, wishlistService } from "../Services";
 import { useNavigate } from "react-router";
 import { ContextData } from "./data-context";
 import { toast } from "react-toastify";
@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }) => {
     const [auth_token, setAuth_Token] = useState(userDetail_local_storage?.encodedToken)
     const [logged_user, setLogged_User] = useState(userDetail_local_storage?.user);
     const [wishlistData, setWishlistData] = useState(logged_user?.wishlist || logged_user?.wishlist || [])
+    const [cartData, setCartData] = useState([])
     const [initialAddress, setInitialAddress] = useState([{
         street: '8505 Christina Ridges',
         alternatemobile: 4878794411,
@@ -131,8 +132,45 @@ export const AuthProvider = ({ children }) => {
         // setLogged_User(DataUpdatedWishlist)
 
     }
+
+    // await fetch(`/api/user/wishlist/${product_id}`, {
+    //     method: "DELETE",
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //         "authorization": `${auth_token}`
+    //     }
+
+
+    const getCart = async () => {
+        try {
+            const getCartRes = await fetch("/api/user/cart", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "authorization": `${auth_token}`
+                }
+            })
+            const getCartData = await getCartRes.json()
+            const getCart = await getCartData.cart
+            // setCategoriesData(getCategories)
+            return await getCart
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
+
+    const addToCartHandler = async (product) => {
+        const { get_cart, status } = await (addToCartService(auth_token, product))
+        console.log(await "lololo", status)
+        if (status === 201) {
+            // console.log("this is wishlist>>>>", await getCart())
+            const fetch_cart_data = await getCart()
+            setCartData(fetch_cart_data)
+        }
+    }
     return (
-        <AuthContext.Provider value={{ loginHandler, setLoginError, loginError, signupHandler, setSignupError, signupError, auth_token, logged_user, setAddress, delete_handler, update_handler, logout_handler, address, wishListHandler, wishlistData, removeWishlistHandler }}>
+        <AuthContext.Provider value={{ loginHandler, setLoginError, loginError, signupHandler, setSignupError, signupError, auth_token, logged_user, setAddress, delete_handler, update_handler, logout_handler, address, wishListHandler, wishlistData, removeWishlistHandler, addToCartHandler, cartData }}>
             {children}
         </AuthContext.Provider>
     )

@@ -16,12 +16,12 @@ const AllProducts = () => {
     const sortedAndFilteredData = userFilters.sort ? userFilters.sort === "low-to-high" ? filteredByRatingsProducts.sort(function (a, b) { return a.price - b.price }) : filteredByRatingsProducts.sort(function (a, b) { return b.price - a.price }) : filteredByRatingsProducts
 
 
-    const { wishListHandler, removeWishlistHandler } = useContext(AuthContext)
+    const { addToCartHandler, wishListHandler, removeWishlistHandler } = useContext(AuthContext)
 
     return (
         <>
             <ChakraProvider>
-                {sortedAndFilteredData.length ? sortedAndFilteredData?.map(eachProduct => <ProductCard wishlist_btn_handler={() => wishListHandler(eachProduct)} remove_wishlist_btn_handler={() => removeWishlistHandler(eachProduct._id)} {...eachProduct} />) : <h2>No products found</h2>}
+                {sortedAndFilteredData.length ? sortedAndFilteredData?.map(eachProduct => <ProductCard cart_btn_handler={() => addToCartHandler(eachProduct)} wishlist_btn_handler={() => wishListHandler(eachProduct)} remove_wishlist_btn_handler={() => removeWishlistHandler(eachProduct._id)} {...eachProduct} />) : <h2>No products found</h2>}
             </ChakraProvider>
         </>
     )

@@ -7,7 +7,8 @@ import MainProductCard from '../../../Action/Common/MainProductCard';
 
 const ProductCard = ({ ...product_props }) => {
   // const existing_id = _id
-  // const { logged_user } = useContext(AuthContext)
+  const { cartData } = useContext(AuthContext)
+  console.log("popopo", cartData)
   // const is_Wishlisted = logged_user.wishlist.find(({ _id }) => _id === existing_id)
   // console.log("from productcard>>", logged_user.wishlist)
 
