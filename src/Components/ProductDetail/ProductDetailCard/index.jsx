@@ -8,8 +8,8 @@ const ProductDetailCard = ({ productImage, title, ratings, reviewedBy, price, av
     const soldout = !availability
     const existing_id = _id
     const { logged_user, wishListHandler, removeWishlistHandler } = useContext(AuthContext)
-    const is_Wishlisted = logged_user.wishlist.find(({ _id }) => _id === existing_id)
-    console.log("kl", logged_user.wishlist)
+    const is_Wishlisted = logged_user?.wishlist.find(({ _id }) => _id === existing_id)
+    console.log("kl", logged_user?.wishlist)
     return (
         <main className="product-detail-main-container">
             <div className="product-detail">

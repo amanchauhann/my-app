@@ -4,7 +4,7 @@ import Footer from "./Components/Footer/Footer";
 import Nav from "./Components/Nav";
 import Home from "./Pages/Home";
 import { useContext } from "react";
-import { ContextData } from "./index";
+import { AuthContext, ContextData } from "./index";
 import ListedProducts from "./Pages/ListedProducts";
 import Mockman from "mockman-js"
 import ProductDetail from "./Pages/ProductDetail";
@@ -18,10 +18,12 @@ import Details from "./Components/Profile/Details";
 import Address from "./Components/Profile/Address";
 import Logout from "./Pages/Auth/Logout";
 import Wishlist from "./Pages/Wishlist";
+import { RequireAuth } from "./Components/RequireAuth";
 
 function App() {
   const location = useLocation();
   const shouldDisplayNav = location.pathname !== "/";
+  const { logged_user } = useContext(AuthContext)
   // const {productsData} = useContext(ContextData)
   // console.log(productsData.products)
   return (
@@ -56,7 +58,7 @@ function App() {
           <Route path="details" element={<Details />} />
           <Route path="address" element={<Address />} />
         </Route>
-        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/wishlist" element={<RequireAuth isLoggedin={logged_user}><Wishlist /></RequireAuth>} />
       </Routes>
       <Footer />
     </div>

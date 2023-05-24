@@ -3,7 +3,7 @@ import { LoginService, SignupService, addToCartService, wishlistDeleteService, w
 import { useNavigate } from "react-router";
 import { ContextData } from "./data-context";
 import { toast } from "react-toastify";
-import { successToast } from "../Extra";
+import { errorToast, successToast } from "../Extra";
 
 export const AuthContext = createContext()
 
@@ -107,7 +107,7 @@ export const AuthProvider = ({ children }) => {
         if (status !== 201) {
             setWishlistError(status, get_wishlist.errors[0])
         }
-        const data_with_update_wishlist = { ...logged_user, wishlist: get_wishlist }
+        const data_with_update_wishlist = { ...logged_user, wishlist: [product, ...logged_user.wishlist] }
         // console.log(wishlist)
         setLogged_User(data_with_update_wishlist)
         setWishlistData(get_wishlist)
@@ -121,8 +121,10 @@ export const AuthProvider = ({ children }) => {
     const removeWishlistHandler = async (i) => {
         const { get_wishlist_deletion, status } = await wishlistDeleteService(auth_token, i)
 
-        console.log("amanan", get_wishlist_deletion)
         const DataUpdatedWishlist = await { ...logged_user, wishlist: get_wishlist_deletion }
+        if (status === 200) {
+            errorToast("Product removed from wishlist")
+        }
         setLogged_User(DataUpdatedWishlist)
         setWishlistData(get_wishlist_deletion)
         localStorage.setItem('userDetails', JSON.stringify({ encodedToken: auth_token, user: DataUpdatedWishlist }))

@@ -5,12 +5,11 @@ import { Link } from 'react-router-dom';
 import outofstock from "../../../../Logos/Utils/outofstock.png"
 
 
-const MainProductCard = ({ productImage, ratings, title, price, availability, _id, cart_btn_handler, wishlist_btn_handler, remove_wishlist_btn_handler }) => {
-    const existing_id = _id
-    const { logged_user, cartData } = useContext(AuthContext)
-    const is_Wishlisted = logged_user.wishlist.find(({ _id }) => _id === existing_id)
-    console.log("from productcard>>", logged_user.wishlist)
-    const in_cart = logged_user.wishlist.find(({ _id }) => _id === existing_id)
+const MainProductCard = ({ productImage, ratings, title, price, availability, _id, wishlist_btn_handler, remove_wishlist_btn_handler, id }) => {
+    const existing_id = id
+    const { logged_user } = useContext(AuthContext)
+    const is_Wishlisted = logged_user?.wishlist?.length > 0 ? logged_user?.wishlist?.find(({ id }) => id === existing_id) : false
+    console.log("from productcard>>", logged_user?.wishlist)
 
     const soldOut = !availability;
     return (
