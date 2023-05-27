@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { LoginService, SignupService, addToCartService, wishlistDeleteService, wishlistService } from "../Services";
+import { LoginService, SignupService, addToCartService, cartDeleteService, wishlistDeleteService, wishlistService } from "../Services";
 import { useNavigate } from "react-router";
 import { ContextData } from "./data-context";
 import { toast } from "react-toastify";
@@ -171,8 +171,39 @@ export const AuthProvider = ({ children }) => {
             setCartData(fetch_cart_data)
         }
     }
+
+    const removeCartHandler = async (i) => {
+        const { get_cart_deletion, status } = await cartDeleteService(auth_token, i)
+        console.log("delted,>>>", status)
+        if (status === 200) {
+            const fetch_cart_data = await getCart()
+            setCartData(fetch_cart_data)
+        }
+    }
+
+    const qty_increment = (i) => {
+        const incremented_qty = cartData.map(eachCartData => eachCartData._id === i ? { ...eachCartData, qty: eachCartData.qty + 1 } : eachCartData)
+        setCartData(incremented_qty)
+    }
+
+    const qty_decrement = (i) => {
+        const decremented_qty = cartData.map(eachCartData => eachCartData._id === i ? eachCartData.qty > 1 ? { ...eachCartData, qty: eachCartData.qty - 1 } : eachCartData : eachCartData)
+        setCartData(decremented_qty)
+    }
+
+    const moveWishlistHandler = async (product) => {
+        removeCartHandler(product._id)
+        wishListHandler(product)
+    }
+
+    const moveToCartHandler = async (product) => {
+        removeWishlistHandler(product._id)
+        addToCartHandler(product)
+
+
+    }
     return (
-        <AuthContext.Provider value={{ loginHandler, setLoginError, loginError, signupHandler, setSignupError, signupError, auth_token, logged_user, setAddress, delete_handler, update_handler, logout_handler, address, wishListHandler, wishlistData, removeWishlistHandler, addToCartHandler, cartData }}>
+        <AuthContext.Provider value={{ loginHandler, setLoginError, loginError, signupHandler, setSignupError, signupError, auth_token, logged_user, setAddress, delete_handler, update_handler, logout_handler, address, wishListHandler, wishlistData, removeWishlistHandler, addToCartHandler, removeCartHandler, cartData, qty_increment, qty_decrement, moveWishlistHandler, moveToCartHandler }}>
             {children}
         </AuthContext.Provider>
     )

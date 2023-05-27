@@ -4,10 +4,12 @@ import { AuthContext } from '../../../index';
 import { useContext } from 'react';
 
 
-const WishlistCard = ({ productImage, ratings, title, price, availability, _id, wishlist_btn_handler, remove_wishlist_btn_handler }) => {
-    const existing_id = _id
+const WishlistCard = ({ productImage, ratings, title, price, availability, _id, wishlist_btn_handler, remove_wishlist_btn_handler, move_to_cart_btn_handler, id }) => {
+    const { cartData } = useContext(AuthContext)
+    const existing_id = id
     const { logged_user } = useContext(AuthContext)
-    const is_Wishlisted = logged_user.wishlist.find(({ _id }) => _id === existing_id)
+    const is_Wishlisted = logged_user.wishlist.find(({ id }) => id === existing_id)
+    const in_cart = cartData.length > 0 ? cartData.find(({ id }) => id === existing_id) : false
     console.log("from productcard>>", logged_user.wishlist)
 
     const soldOut = !availability;
@@ -45,10 +47,17 @@ const WishlistCard = ({ productImage, ratings, title, price, availability, _id, 
                     <Divider />
                     <CardFooter>
                         <ButtonGroup spacing='2'>
-                            <Button isDisabled={soldOut}
-                                variant='solid' colorScheme='blue'>
-                                Add to cart
-                            </Button>
+                            {in_cart ? <Button isDisabled
+                                variant='ghost' colorScheme='blue'>
+                                Already in cart
+                            </Button> :
+                                <Button onClick={move_to_cart_btn_handler} isDisabled={soldOut}
+                                    variant='solid' colorScheme='blue'>
+                                    Move to cart
+                                </Button>
+                            }
+
+
                             {is_Wishlisted ?
                                 <Button
                                     variant='ghost' colorScheme='blue' border="1px" onClick={remove_wishlist_btn_handler}>

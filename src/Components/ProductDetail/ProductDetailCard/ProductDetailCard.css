@@ -74,10 +74,35 @@
     color: white;
 }
 
+.product-detail-button-cart:hover {
+    background-color: #1867b1;
+    cursor: pointer;
+}
+
 .product-detail-button-wishlist {
     background-color: #fff;
-    border: 1px solid #3182ce;
+    /* border: 1px solid #3182ce; */
+    border: none;
     color: #3182ce;
+}
+
+.product-detail-button-wishlist:hover {
+    background-color: rgba(49, 130, 206, 0.1);
+}
+
+.remove_wishlist_btn {
+    border: 1px solid #3182ce;
+}
+
+.product-detail-button-remove {
+    border: 1px solid red;
+    background: transparent;
+    color: rgb(160, 6, 6);
+}
+
+.product-detail-button-remove:hover {
+    background: rgba(160, 6, 6, 0.07);
+    cursor: pointer;
 }
 
 @media screen and (min-width: 670px) {

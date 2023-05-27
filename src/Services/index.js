@@ -95,3 +95,18 @@ export const addToCartService = async (auth_token, product) => {
     const get_cart = await data.cart
     return { get_cart, status }
 }
+
+export const cartDeleteService = async (auth_token, product_id) => {
+    const res = await fetch(`/api/user/cart/${product_id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "authorization": `${auth_token}`
+        }
+    })
+    // console.log("res", res.status)
+    const status = await res.status
+    const data = await res.json()
+    const get_cart_deletion = await data.cart
+    return { get_cart_deletion, status }
+}

@@ -5,10 +5,11 @@ import { Link } from 'react-router-dom';
 import outofstock from "../../../../Logos/Utils/outofstock.png"
 
 
-const MainProductCard = ({ productImage, ratings, title, price, availability, _id, wishlist_btn_handler, remove_wishlist_btn_handler, id }) => {
+const MainProductCard = ({ productImage, ratings, title, price, availability, _id, wishlist_btn_handler, remove_wishlist_btn_handler, cart_btn_handler, remove_cart_btn_handler, id }) => {
     const existing_id = id
-    const { logged_user } = useContext(AuthContext)
+    const { logged_user, cartData } = useContext(AuthContext)
     const is_Wishlisted = logged_user?.wishlist?.length > 0 ? logged_user?.wishlist?.find(({ id }) => id === existing_id) : false
+    const in_cart = cartData.length > 0 ? cartData.find(({ id }) => id === existing_id) : false
     console.log("from productcard>>", logged_user?.wishlist)
 
     const soldOut = !availability;
@@ -46,10 +47,15 @@ const MainProductCard = ({ productImage, ratings, title, price, availability, _i
                     <Divider />
                     <CardFooter>
                         <ButtonGroup spacing='2'>
-                            <Button onClick={cart_btn_handler} isDisabled={soldOut}
-                                variant='solid' colorScheme='blue'>
-                                Add to cart
-                            </Button>
+                            {in_cart ?
+                                <Button border='1px solid red' onClick={remove_cart_btn_handler}
+                                    variant='ghost' colorScheme='red'>
+                                    Discard
+                                </Button> :
+                                <Button onClick={cart_btn_handler} isDisabled={soldOut}
+                                    variant='solid' colorScheme='blue'>
+                                    Add to cart
+                                </Button>}
                             {is_Wishlisted ?
                                 <Button
                                     variant='ghost' colorScheme='blue' border="1px" onClick={remove_wishlist_btn_handler}>
