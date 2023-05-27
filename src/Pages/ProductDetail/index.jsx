@@ -9,7 +9,7 @@ import { AuthContext } from "../../index";
 const ProductDetail = () => {
     const [selectedProduct, setSelectedProduct] = useState()
     const { ProductID } = useParams();
-    const { wishListHandler } = useContext(AuthContext)
+    const { wishListHandler, addToCartHandler, removeCartHandler } = useContext(AuthContext)
     useEffect(() => {
         const fetchingData = async () => {
             try {
@@ -25,7 +25,7 @@ const ProductDetail = () => {
         fetchingData()
     }, [])
     return (
-        <ProductDetailCard wishlist_btn_handler={() => wishListHandler({ ...selectedProduct })} {...selectedProduct} />
+        <ProductDetailCard wishlist_btn_handler={() => wishListHandler({ ...selectedProduct })} cart_btn_handler={() => addToCartHandler(selectedProduct)} remove_cart_btn_handler={(() => removeCartHandler(selectedProduct._id))} {...selectedProduct} />
     )
 }
 

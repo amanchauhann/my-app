@@ -19,6 +19,7 @@ import Address from "./Components/Profile/Address";
 import Logout from "./Pages/Auth/Logout";
 import Wishlist from "./Pages/Wishlist";
 import { RequireAuth } from "./Components/RequireAuth";
+import Cart from "./Pages/Cart";
 
 function App() {
   const location = useLocation();
@@ -59,6 +60,7 @@ function App() {
           <Route path="address" element={<Address />} />
         </Route>
         <Route path="/wishlist" element={<RequireAuth isLoggedin={logged_user}><Wishlist /></RequireAuth>} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
       <Footer />
     </div>
