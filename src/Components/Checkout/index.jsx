@@ -49,7 +49,7 @@ const CheckoutContainer = () => {
             key: process.env.REACT_APP_RZP,
             amount: total.toFixed(2) * 100,
             currency: "INR",
-            name: "CHARME",
+            name: "RONES",
             description: "Thank you for shopping with us",
             // image: "",
             handler: function (response) {
