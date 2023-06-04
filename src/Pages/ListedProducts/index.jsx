@@ -3,10 +3,10 @@ import ProductListing from "../../Components/ListedProducts/ProductListing";
 import "./ListedProducts.css";
 
 const ListedProducts = () => {
-    return(
+    return (
         <div className="listed-products">
-        <Aside />
-        <ProductListing />
+            <Aside />
+            <ProductListing />
         </div>
     )
 }

@@ -6,7 +6,7 @@
 }
 
 .checkout_main_container {
-    /* border: 3px solid red; */
+    border: 3px solid red;
     display: flex;
     padding: 8rem;
     justify-content: center;
@@ -81,4 +81,15 @@
 .place_order_btn:not(:disabled):hover {
     background-color: #1d6eb9;
     cursor: pointer;
+}
+
+@media screen and (max-width: 650px) {
+    .checkout_main_container {
+        /* border: 3px solid red; */
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+        /* justify-content: center; */
+        gap: 5rem
+    }
 }

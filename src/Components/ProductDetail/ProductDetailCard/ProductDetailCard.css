@@ -1,17 +1,18 @@
 .product-detail-main-container {
     padding: 1rem;
+    /* border: 2px solid green; */
 }
 
 .product-detail {
     display: flex;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     gap: 1rem;
     /* align-items: center; */
     /* max-width: 50rem; */
     justify-content: center;
     /* padding: 1rem; */
-    width: fit-content;
-    min-width: 30rem;
+    /* width: fit-content;
+    min-width: 30rem; */
     background: #fff;
     margin: auto;
     margin-top: 5rem;
