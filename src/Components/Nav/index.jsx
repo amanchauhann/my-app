@@ -13,8 +13,8 @@ const Nav = () => {
     const [productsData, setProductsData] = useState([])
     // const { productsData } = useContext(ContextData);
     // const dummysuggestion = [...suggestions]
-    const wishlistlength = logged_user.wishlist.length
-    const cartlength = cartData.length
+    const wishlistlength = logged_user?.wishlist?.length
+    const cartlength = cartData?.length
     const fetchingData = async () => {
         try {
             const res = await fetch("/api/products")
