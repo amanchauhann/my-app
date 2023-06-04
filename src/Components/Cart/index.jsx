@@ -10,7 +10,7 @@ const CartCardContainer = () => {
     const { cartData, qty_increment, qty_decrement, removeCartHandler, moveWishlistHandler } = useContext(AuthContext)
     console.log("opopop", cartData)
     return (
-        <>
+        <div className="cart_cards_container">
             {cartData.length > 0 ? <div className="cart_card_container">
 
                 <div className="cart_item_cards_container">
@@ -33,8 +33,8 @@ const CartCardContainer = () => {
                 </div>
 
 
-            </div> : <p>There's nothing here.</p>}
-        </>
+            </div> : <h1 style={{ padding: "3rem" }}>There's nothing here!</h1>}
+        </div>
     )
 }
 export default CartCardContainer
