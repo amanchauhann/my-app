@@ -56,7 +56,7 @@ export const AuthProvider = ({ children }) => {
         // localStorage.setItem('userDetails', JSON.stringify({ encodedToken: encodedToken, user: data.foundUser }));
         encodedToken && successToast("Successfully logged in")
         console.log("just for you", userData)
-        encodedToken && navigate(location?.state?.from?.pathname ?? "/products")
+        encodedToken && navigate(location?.state?.from?.pathname ?? "/")
         // encodedToken && navigate(userFromLocation ?? "/")
     }
 
@@ -72,6 +72,7 @@ export const AuthProvider = ({ children }) => {
         { encodedToken && localStorage.setItem('userDetails', JSON.stringify({ encodedToken: encodedToken, user: userData })) };
         setAuth_Token(encodedToken)
         setLogged_User(userData)
+        encodedToken && navigate(location?.state?.from?.pathname ?? "/")
         // encodedToken && navigate(userFromLocation ?? "/")
     }
     useEffect(() => {
