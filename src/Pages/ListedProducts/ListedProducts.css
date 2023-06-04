@@ -1,11 +1,32 @@
-.listed-products{
+.listed-products {
     /* border: 2px solid green; */
     display: flex;
     background: rgb(244, 241, 241);
     padding: 2rem 0 2rem 0;
+    align-items: flex-start;
 }
 
-.listed-products>*{
+.listed-products>* {
     /* border: 3px solid red; */
     padding-top: 1rem;
+}
+
+.show_filter_btn {
+    background-color: #fff;
+    outline: 1px solid var(--btn-blue);
+    border: none;
+    color: #3182ce;
+    padding: 0 16px;
+    font-weight: 600;
+    height: 2.5rem;
+    min-width: 2.5rem;
+    border-radius: 0.375rem;
+
+}
+
+@media screen and (max-width: 620px) {
+    .listed-products {
+        flex-direction: column;
+        padding-left: 1rem;
+    }
 }

@@ -45,3 +45,14 @@
     line-height: normal;
     margin: 0 0 0.5em 0;
 }
+
+@media screen and (max-width: 620px) {
+    .products-listed-card-container {
+        justify-content: center;
+    }
+
+    .headingtwo {
+        text-align: center;
+    }
+
+}
