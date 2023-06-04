@@ -3,6 +3,8 @@ import CartCard from "./Card"
 import { useContext } from "react"
 import { AuthContext } from "../../Contexts/auth-context"
 import CalculationCard from "./Calculation"
+import "./Cart.css"
+import { Link } from "react-router-dom"
 
 const CartCardContainer = () => {
     const { cartData, qty_increment, qty_decrement, removeCartHandler, moveWishlistHandler } = useContext(AuthContext)
@@ -20,8 +22,16 @@ const CartCardContainer = () => {
                     </ChakraProvider>
 
                 </div>
+                <div className="cart_right_container">
+                    <CalculationCard details_title={"Cart Price Details"} />
+                    <div>
+                        <Link to="/checkout">
+                            <button className="checkout_btn">Checkout</button>
+                        </Link>
 
-                <CalculationCard />
+                    </div>
+                </div>
+
 
             </div> : <p>There's nothing here.</p>}
         </>

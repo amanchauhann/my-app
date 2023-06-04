@@ -4,7 +4,7 @@ import { AuthContext } from '../../../index';
 import { useContext } from 'react';
 
 
-const WishlistCard = ({ productImage, ratings, title, price, availability, _id, wishlist_btn_handler, remove_wishlist_btn_handler, move_to_cart_btn_handler, id }) => {
+const WishlistCard = ({ productImage, ratings, title, price, availability, _id, wishlist_btn_handler, remove_wishlist_btn_handler, move_to_cart_btn_handler, id, cart_btn_handler }) => {
     const { cartData } = useContext(AuthContext)
     const existing_id = id
     const { logged_user } = useContext(AuthContext)
@@ -47,10 +47,18 @@ const WishlistCard = ({ productImage, ratings, title, price, availability, _id, 
                     <Divider />
                     <CardFooter>
                         <ButtonGroup spacing='2'>
-                            {in_cart ? <Button isDisabled
-                                variant='ghost' colorScheme='blue'>
-                                Already in cart
-                            </Button> :
+                            {in_cart ?
+                                <Link to="/cart">
+                                    <Button border='1px solid red'
+                                        variant='ghost' colorScheme='red'>
+                                        Go to Cart
+                                    </Button>
+                                </Link>
+                                //     <Button isDisabled
+                                //     variant='ghost' colorScheme='blue'>
+                                //     Already in cart
+                                // </Button>
+                                :
                                 <Button onClick={move_to_cart_btn_handler} isDisabled={soldOut}
                                     variant='solid' colorScheme='blue'>
                                     Move to cart

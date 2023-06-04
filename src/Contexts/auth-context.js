@@ -1,9 +1,9 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { LoginService, SignupService, addToCartService, cartDeleteService, wishlistDeleteService, wishlistService } from "../Services";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import { ContextData } from "./data-context";
 import { toast } from "react-toastify";
-import { errorToast, successToast } from "../Extra";
+import { errorToast, infoToast, successToast } from "../Extra";
 
 export const AuthContext = createContext()
 
@@ -25,13 +25,16 @@ export const AuthProvider = ({ children }) => {
         state: 'Arunachal Pradesh',
     }])
     const [address, setAddress] = useState(logged_user?.address && logged_user?.address)
-    const { userFromLocation, prod } = useContext(ContextData)
-    console.log("pp", address)
+    // const { userFromLocation, prod } = useContext(ContextData)
+    // console.log("pp", address)
+    const location = useLocation()
+    console.log("context location", location)
     // console.log(userFromLocation)
     const navigate = useNavigate()
     const [loginError, setLoginError] = useState({ status: "", message: "" })
     const [signupError, setSignupError] = useState({ status: "", message: "" })
     const [wishlistError, setWishlistError] = useState("")
+    const [ordered_products, setOrdered_products] = useState([])
 
     const loginHandler = async (email, password) => {
         const { data, ResStatus } = await (LoginService(email, password))
@@ -46,13 +49,14 @@ export const AuthProvider = ({ children }) => {
         { encodedToken && localStorage.setItem('userDetails', JSON.stringify({ encodedToken: encodedToken, user: userData })) }
         setAuth_Token(encodedToken)
         setLogged_User(userData)
-        encodedToken && navigate(userFromLocation ?? "/")
+        // encodedToken && navigate(userFromLocation ?? "/")
         // const encodedToken = await data.encodedToken
 
         // const encodedToken = await data.encodedToken
         // localStorage.setItem('userDetails', JSON.stringify({ encodedToken: encodedToken, user: data.foundUser }));
         encodedToken && successToast("Successfully logged in")
         console.log("just for you", userData)
+        encodedToken && navigate(location?.state?.from?.pathname ?? "/products")
         // encodedToken && navigate(userFromLocation ?? "/")
     }
 
@@ -68,7 +72,7 @@ export const AuthProvider = ({ children }) => {
         { encodedToken && localStorage.setItem('userDetails', JSON.stringify({ encodedToken: encodedToken, user: userData })) };
         setAuth_Token(encodedToken)
         setLogged_User(userData)
-        encodedToken && navigate(userFromLocation ?? "/")
+        // encodedToken && navigate(userFromLocation ?? "/")
     }
     useEffect(() => {
         if (address !== undefined && auth_token) {
@@ -92,7 +96,13 @@ export const AuthProvider = ({ children }) => {
         setLogged_User(DataUpdatedAddresss)
     }
 
-    const update_handler = (i) => {
+    const update_address_handler = (add) => {
+        console.log("oooooooooooo", add)
+        if (add !== undefined) {
+            const DataWithNewAddress = { ...logged_user, address: logged_user.address.map(eachAdd => eachAdd.id === add.id ? add : eachAdd) }
+            localStorage.setItem('userDetails', JSON.stringify({ encodedToken: auth_token, user: DataWithNewAddress }))
+            setLogged_User(DataWithNewAddress)
+        }
 
     }
 
@@ -103,18 +113,23 @@ export const AuthProvider = ({ children }) => {
     }
 
     const wishListHandler = async (product) => {
-        const { get_wishlist, status } = await (wishlistService(auth_token, product))
-        if (status !== 201) {
-            setWishlistError(status, get_wishlist.errors[0])
+        if (logged_user) {
+            const { get_wishlist, status } = await (wishlistService(auth_token, product))
+            if (status !== 201) {
+                setWishlistError(status, get_wishlist.errors[0])
+            }
+            const data_with_update_wishlist = { ...logged_user, wishlist: [product, ...logged_user.wishlist] }
+            // console.log(wishlist)
+            setLogged_User(data_with_update_wishlist)
+            setWishlistData(get_wishlist)
+            localStorage.setItem('userDetails', JSON.stringify({ encodedToken: auth_token, user: data_with_update_wishlist }))
+            if (status === 201) {
+                successToast(`${product.title} has been added to wishlist.`)
+            }
+        } else {
+            navigate("/login")
         }
-        const data_with_update_wishlist = { ...logged_user, wishlist: [product, ...logged_user.wishlist] }
-        // console.log(wishlist)
-        setLogged_User(data_with_update_wishlist)
-        setWishlistData(get_wishlist)
-        localStorage.setItem('userDetails', JSON.stringify({ encodedToken: auth_token, user: data_with_update_wishlist }))
-        if (status === 201) {
-            successToast(`${product.title} has been added to wishlist.`)
-        }
+
 
     }
 
@@ -162,15 +177,27 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    const timeoutIDRef = useRef(null);
+    const [addToCartButtonDisabled, setAddToCartButtonDisabled] = useState(false);
+
     const addToCartHandler = async (product) => {
-        const { get_cart, status } = await (addToCartService(auth_token, product))
-        console.log(await "lololo", status)
-        if (status === 201) {
-            // console.log("this is wishlist>>>>", await getCart())
-            const fetch_cart_data = await getCart()
-            setCartData(fetch_cart_data)
+        if (addToCartButtonDisabled) {
+            return;
         }
-    }
+        setAddToCartButtonDisabled(true);
+
+        clearTimeout(timeoutIDRef.current);
+        timeoutIDRef.current = setTimeout(async () => {
+            const { get_cart, status } = await addToCartService(auth_token, product);
+            console.log("lololo", status);
+            if (status === 201) {
+                const fetch_cart_data = await getCart();
+                setCartData(fetch_cart_data);
+                successToast(`${product.title} is added to cart.`);
+            }
+            setAddToCartButtonDisabled(false);
+        }, 300);
+    };
 
     const removeCartHandler = async (i) => {
         const { get_cart_deletion, status } = await cartDeleteService(auth_token, i)
@@ -178,6 +205,7 @@ export const AuthProvider = ({ children }) => {
         if (status === 200) {
             const fetch_cart_data = await getCart()
             setCartData(fetch_cart_data)
+            errorToast(`Product removed from cart.`)
         }
     }
 
@@ -194,16 +222,16 @@ export const AuthProvider = ({ children }) => {
     const moveWishlistHandler = async (product) => {
         removeCartHandler(product._id)
         wishListHandler(product)
+        infoToast(`${product.title} is moved to wishlist.`)
     }
 
     const moveToCartHandler = async (product) => {
-        removeWishlistHandler(product._id)
+        // removeWishlistHandler(product._id)
         addToCartHandler(product)
-
-
+        infoToast(`${product.title} is movoed to cart.`)
     }
     return (
-        <AuthContext.Provider value={{ loginHandler, setLoginError, loginError, signupHandler, setSignupError, signupError, auth_token, logged_user, setAddress, delete_handler, update_handler, logout_handler, address, wishListHandler, wishlistData, removeWishlistHandler, addToCartHandler, removeCartHandler, cartData, qty_increment, qty_decrement, moveWishlistHandler, moveToCartHandler }}>
+        <AuthContext.Provider value={{ loginHandler, setLoginError, loginError, signupHandler, setSignupError, signupError, auth_token, logged_user, setAddress, delete_handler, update_address_handler, logout_handler, address, wishListHandler, wishlistData, removeWishlistHandler, addToCartHandler, removeCartHandler, cartData, qty_increment, qty_decrement, moveWishlistHandler, moveToCartHandler, setOrdered_products }}>
             {children}
         </AuthContext.Provider>
     )

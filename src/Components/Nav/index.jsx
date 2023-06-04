@@ -10,16 +10,43 @@ const Nav = () => {
     const { locationHandler, auth_token } = useContext(AuthContext);
     const [search_value, setSearch_value] = useState("");
     const [suggestions, setSuggestions] = useState([]);
+    const [productsData, setProductsData] = useState([])
+    // const { productsData } = useContext(ContextData);
+    // const dummysuggestion = [...suggestions]
 
-    const { productsData } = useContext(ContextData);
+    const fetchingData = async () => {
+        try {
+            const res = await fetch("/api/products")
+            const data = await res.json()
+            setProductsData(data.products)
+        } catch (e) {
+            console.log(e.target.value)
+        }
+    }
 
+    const timeoutIDRef = useRef(null);
+    // const [isDisable, setIsDisable] = useState(false)
     const search_value_handler = (e) => {
+        // if (isDisable) {
+        //     return;
+        // }
+        // setIsDisable(true)
+        setSuggestions([])
+        clearTimeout(timeoutIDRef.current);
         setSearch_value(e.target.value);
-        setSuggestions(
-            productsData.filter(({ title }) =>
-                title.toLowerCase().includes(e.target.value.toLowerCase().trim())
-            )
-        );
+        timeoutIDRef.current = setTimeout(async () => {
+            const res = await fetch("/api/products")
+            const data = await res.json()
+            setProductsData(data.products)
+            setSuggestions((prev) =>
+                [...prev, ...data.products.filter(({ title }) =>
+                    title.toLowerCase().includes(e.target.value.toLowerCase().trim())
+                )]
+            );
+            console.log("tyttytytyt", suggestions)
+            // setIsDisable(false)
+        }, 500);
+
     };
 
     return (
@@ -77,7 +104,7 @@ const Nav = () => {
                                 </svg>} />
                             </Link>
                         ) : (
-                            <Link to="/login" onClick={() => locationHandler(location)}>
+                            <Link to="/login" >
                                 <NavList liText="Login" />
                             </Link>
                         )}

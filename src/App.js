@@ -20,6 +20,7 @@ import Logout from "./Pages/Auth/Logout";
 import Wishlist from "./Pages/Wishlist";
 import { RequireAuth } from "./Components/RequireAuth";
 import Cart from "./Pages/Cart";
+import Checkout from "./Pages/Checkout";
 
 function App() {
   const location = useLocation();
@@ -59,8 +60,9 @@ function App() {
           <Route path="details" element={<Details />} />
           <Route path="address" element={<Address />} />
         </Route>
-        <Route path="/wishlist" element={<RequireAuth isLoggedin={logged_user}><Wishlist /></RequireAuth>} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/wishlist" element={<RequireAuth><Wishlist /></RequireAuth>} />
+        <Route path="/cart" element={<RequireAuth><Cart /></RequireAuth>} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
       <Footer />
     </div>

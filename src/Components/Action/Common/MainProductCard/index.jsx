@@ -7,7 +7,7 @@ import outofstock from "../../../../Logos/Utils/outofstock.png"
 
 const MainProductCard = ({ productImage, ratings, title, price, availability, _id, wishlist_btn_handler, remove_wishlist_btn_handler, cart_btn_handler, remove_cart_btn_handler, id }) => {
     const existing_id = id
-    const { logged_user, cartData } = useContext(AuthContext)
+    const { logged_user, cartData, encodedToken } = useContext(AuthContext)
     const is_Wishlisted = logged_user?.wishlist?.length > 0 ? logged_user?.wishlist?.find(({ id }) => id === existing_id) : false
     const in_cart = cartData.length > 0 ? cartData.find(({ id }) => id === existing_id) : false
     console.log("from productcard>>", logged_user?.wishlist)
@@ -48,10 +48,13 @@ const MainProductCard = ({ productImage, ratings, title, price, availability, _i
                     <CardFooter>
                         <ButtonGroup spacing='2'>
                             {in_cart ?
-                                <Button border='1px solid red' onClick={remove_cart_btn_handler}
-                                    variant='ghost' colorScheme='red'>
-                                    Discard
-                                </Button> :
+                                <Link to="/cart">
+                                    <Button border='1px solid red'
+                                        variant='ghost' colorScheme='red'>
+                                        Go to Cart
+                                    </Button>
+                                </Link>
+                                :
                                 <Button onClick={cart_btn_handler} isDisabled={soldOut}
                                     variant='solid' colorScheme='blue'>
                                     Add to cart
@@ -74,3 +77,8 @@ const MainProductCard = ({ productImage, ratings, title, price, availability, _i
 }
 
 export default MainProductCard
+
+// <Button border='1px solid red' onClick={remove_cart_btn_handler}
+//                                     variant='ghost' colorScheme='red'>
+//                                     Discard
+//                                 </Button>

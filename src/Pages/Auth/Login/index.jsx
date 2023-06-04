@@ -1,4 +1,4 @@
-import { Link, Navigate, useNavigate } from "react-router-dom"
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom"
 import "../Auth.css"
 import { useContext, useEffect, useState } from "react"
 import { users } from "../../../backend/db/users"
@@ -8,7 +8,8 @@ const Login = () => {
     // const {userFromLocation} = useContext(ContextData)
     // const navigate = useNavigate()
     const { loginHandler, loginError, setLoginError } = useContext(AuthContext)
-
+    const location = useLocation()
+    console.log("from login", location)
     // storing value of test user
     const existingLoginForm = {
         email: users[0].email,

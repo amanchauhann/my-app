@@ -16,12 +16,14 @@ export const DataContext = ({ children }) => {
     })
     const [userFromLocation, setUserFromLocation] = useState()
     const [selectedProduct, setSelectedProduct] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
     const { ProductID } = useParams()
     // console.log(ProductID)
 
     useEffect(() => {
         const fetchingData = async () => {
             try {
+                setIsLoading(true)
                 const getCategoriesRes = await fetch("/api/categories")
                 const getCategoriesData = await getCategoriesRes.json()
                 const getCategories = await getCategoriesData.categories
@@ -30,6 +32,7 @@ export const DataContext = ({ children }) => {
                 const res = await fetch("/api/products")
                 const data = await res.json()
                 setProductsData(data.products)
+                if (res.status) setIsLoading(false)
             } catch (e) {
                 console.log(e.target.value)
             }
@@ -73,14 +76,14 @@ export const DataContext = ({ children }) => {
     }
 
 
-    const locationHandler = (currentLocation) =>{
-        setUserFromLocation(currentLocation.pathname)
-    }
+    // const locationHandler = (currentLocation) => {
+    //     setUserFromLocation(currentLocation.pathname)
+    // }
 
 
 
-    return(
-        <ContextData.Provider value={{categoriesData, productsData, priceHandler, categoryHandler, weightHandler, ratingHandler, sortHandler, resetFilters, userFilters, locationHandler, userFromLocation}}>
+    return (
+        <ContextData.Provider value={{ categoriesData, productsData, priceHandler, categoryHandler, weightHandler, ratingHandler, sortHandler, resetFilters, userFilters, userFromLocation, isLoading }}>
             {children}
         </ContextData.Provider>
     )

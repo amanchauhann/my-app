@@ -58,6 +58,7 @@
   --hover-grey: rgba(255, 255, 255, .1);
   --primary-color: rgb(53, 53, 53);
   --cancel-red: rgb(224, 77, 77);
+  --btn-blue: #3182ce;
 }
 
 ::-webkit-scrollbar {
