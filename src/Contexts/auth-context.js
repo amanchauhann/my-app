@@ -42,6 +42,7 @@ export const AuthProvider = ({ children }) => {
             setLoginError({ status: ResStatus, message: data.errors[0] })
         }
 
+        console.log("opopopop", location)
         const encodedToken = await data.encodedToken
         const userData = { ...data.foundUser, address: initialAddress }
         setAddress(initialAddress)
@@ -128,7 +129,7 @@ export const AuthProvider = ({ children }) => {
                 successToast(`${product.title} has been added to wishlist.`)
             }
         } else {
-            navigate("/login")
+            navigate("/login", { state: { from: location } })
         }
 
 
@@ -182,22 +183,26 @@ export const AuthProvider = ({ children }) => {
     const [addToCartButtonDisabled, setAddToCartButtonDisabled] = useState(false);
 
     const addToCartHandler = async (product) => {
-        if (addToCartButtonDisabled) {
-            return;
-        }
-        setAddToCartButtonDisabled(true);
-
-        clearTimeout(timeoutIDRef.current);
-        timeoutIDRef.current = setTimeout(async () => {
-            const { get_cart, status } = await addToCartService(auth_token, product);
-            console.log("lololo", status);
-            if (status === 201) {
-                const fetch_cart_data = await getCart();
-                setCartData(fetch_cart_data);
-                successToast(`${product.title} is added to cart.`);
+        if (logged_user) {
+            if (addToCartButtonDisabled) {
+                return;
             }
-            setAddToCartButtonDisabled(false);
-        }, 300);
+            setAddToCartButtonDisabled(true);
+
+            clearTimeout(timeoutIDRef.current);
+            timeoutIDRef.current = setTimeout(async () => {
+                const { get_cart, status } = await addToCartService(auth_token, product);
+                console.log("lololo", status);
+                if (status === 201) {
+                    const fetch_cart_data = await getCart();
+                    setCartData(fetch_cart_data);
+                    successToast(`${product.title} is added to cart.`);
+                }
+                setAddToCartButtonDisabled(false);
+            }, 300);
+        } else {
+            navigate("/login", { state: { from: location } })
+        }
     };
 
     const removeCartHandler = async (i) => {
