@@ -50,7 +50,7 @@ const UpdateAddressForm = ({ closeForm, setUpdate_address_form, update_address_f
 
                         <input required value={update_address_form.mobile} onChange={(e) => setUpdate_address_form(prev => ({ ...prev, mobile: e.target.value }))} className="form_input" type="number" placeholder="mobile no." />
 
-                        <input required value={update_address_form.pincode} onChange={(e) => setUpdate_address_form(prev => ({ ...prev, pincode: e.target.value }))} className="form_input" type="text" placeholder="pin code" />
+                        <input required value={update_address_form.pincode} onChange={(e) => setUpdate_address_form(prev => ({ ...prev, pincode: e.target.value }))} className="form_input" type="number" placeholder="pin code" />
 
                         <input required value={update_address_form.city} onChange={(e) => setUpdate_address_form(prev => ({ ...prev, city: e.target.value }))} className="form_input" type="text" placeholder="city" />
 
