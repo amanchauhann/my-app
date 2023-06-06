@@ -112,6 +112,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem('userDetails');
         setAuth_Token(null);
         setLogged_User(null);
+        setCartData([])
     }
 
     const wishListHandler = async (product) => {
