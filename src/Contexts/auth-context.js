@@ -48,6 +48,7 @@ export const AuthProvider = ({ children }) => {
         setAddress(initialAddress)
 
         { encodedToken && localStorage.setItem('userDetails', JSON.stringify({ encodedToken: encodedToken, user: userData })) }
+        setCartData(userData.cart)
         setAuth_Token(encodedToken)
         setLogged_User(userData)
         // encodedToken && navigate(userFromLocation ?? "/")
