@@ -2,8 +2,8 @@ import { useContext } from "react"
 import "../Cart.css"
 import { AuthContext } from "../../../index"
 
-const CalculationCard = ({ details_title }) => {
-    const { cartData } = useContext(AuthContext)
+const CalculationCard = ({ cartData, details_title }) => {
+    // const { cartData } = useContext(AuthContext)
     const total = cartData.reduce((initial_price, { price, qty }) => {
         const price_for_item = price * qty
         return initial_price + price_for_item

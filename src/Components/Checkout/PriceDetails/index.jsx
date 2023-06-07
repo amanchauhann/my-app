@@ -10,7 +10,7 @@ const PriceDetails = () => {
     }, 0)
     return (
         <>
-            <CalculationCard />
+            <CalculationCard cartData={cartData} details_title={"Cart Price Details"} />
         </>
     )
 }

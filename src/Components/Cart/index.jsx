@@ -23,7 +23,7 @@ const CartCardContainer = () => {
 
                 </div>
                 <div className="cart_right_container">
-                    <CalculationCard details_title={"Cart Price Details"} />
+                    <CalculationCard cartData={cartData} details_title={"Cart Price Details"} />
                     <div>
                         <Link to="/checkout">
                             <button className="checkout_btn">Checkout</button>
