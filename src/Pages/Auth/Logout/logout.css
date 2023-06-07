@@ -1,5 +1,5 @@
-.logout_container{
-    border: 1px solid red;
+.logout_container {
+    /* border: 1px solid red; */
     display: flex;
     justify-content: center;
     height: 60vh;
@@ -14,7 +14,7 @@
     text-align: center;
 }
 
-.logout_explore{
+.logout_explore {
     padding: 0.9rem;
     background: white;
     border-radius: 10px;
@@ -24,7 +24,7 @@
     width: 100%;
 }
 
-.logout_explore:hover{
+.logout_explore:hover {
     background: var(--primary-color);
     color: white;
     cursor: pointer;

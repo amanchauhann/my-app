@@ -1,13 +1,13 @@
-.main-auth-container{
+.main-auth-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     padding: 5rem 0;
     /* background: rgb(255, 247, 247); */
 }
 
-.auth-container{
+.auth-container {
     border: 1px solid grey;
     display: flex;
     flex-direction: column;
@@ -20,26 +20,26 @@
     width: 400px;
 }
 
-.lower-auth-container{
+.lower-auth-container {
     display: flex;
     flex-direction: column;
     gap: 0.9rem;
     /* border: 1px solid red; */
 }
 
-.lower-auth-container form{
+.lower-auth-container form {
     display: flex;
     flex-direction: column;
     gap: 0.9rem;
 }
 
-.auth-card-item{
+.auth-card-item {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.auth-input{
+.auth-input {
     height: 40px;
     border: 1px solid grey;
     border-radius: 5px;
@@ -47,32 +47,32 @@
     padding: 1rem;
 }
 
-.auth-input:focus{
+.auth-input:focus {
     outline: none;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
-.login-error{
+.login-error {
     font-size: 16px;
     transition: 2s;
     color: red;
 }
 
-.error_input{
+.error_input {
     border: 1px solid red;
 }
 
-.button-container{
+.button-container {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-.button-container button{
+.button-container button {
     padding: 0.6rem;
 }
 
-.auth-button{
+.auth-button {
     background-color: #3182ce;
     color: white;
     border: 1px solid #e2e8f0;
@@ -83,9 +83,9 @@
     transition: 0.7s;
 }
 
-.auth-button:hover{
+.auth-button:hover {
     box-shadow: 0 0 0;
     background-color: #fff;
-    outline:1px solid #3182ce;
+    outline: 1px solid #3182ce;
     color: #3182ce;
 }
