@@ -9,7 +9,7 @@ import CalculationCard from "../Cart/Calculation"
 import AddressCard from "../Profile/Address/Card/AddressCard"
 
 const CheckoutContainer = () => {
-    const { logged_user, cartData } = useContext(AuthContext)
+    const { logged_user, cartData, setOrdered_products, ordered_products, clearAllCartItems } = useContext(AuthContext)
     const [selectedAddress, setSelectedAddress] = useState(null);
     const [ifOrdered, setIfOrdered] = useState(false)
     const total = cartData.reduce((initial_price, { price, qty }) => {
@@ -55,6 +55,7 @@ const CheckoutContainer = () => {
             handler: function (response) {
                 console.log(response)
                 setIfOrdered(response.razorpay_payment_id)
+                setOrdered_products(cartData)
                 // const orderData = {
                 //     orderedItems: [...cart],
                 //     amount: totalPrice(cart).toFixed(2),
@@ -63,7 +64,7 @@ const CheckoutContainer = () => {
                 // };
                 // setOrders((prev) => [orderData, ...prev]);
                 // dispatch({ type: "UPDATE_INDEX" });
-                // clearAllCartItems();
+                clearAllCartItems();
                 // navigate("/")
 
             },
@@ -87,7 +88,7 @@ const CheckoutContainer = () => {
             <div className="checkout_main_container">
                 {ifOrdered ? <div className="success_orders_container">
                     <h1>CONGRATULATIONS! YOUR ORDER IS SUCCESSFULLY PLACED.</h1>
-                    <CalculationCard details_title={"Ordered Products Summary"} />
+                    <CalculationCard cartData={ordered_products} details_title={"Ordered Products Summary"} />
                     <div>
                         <p>Your order will be delivered to: </p>
                         {<AddressCard {...selectedAddress} />}

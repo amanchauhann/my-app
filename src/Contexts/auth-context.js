@@ -217,6 +217,25 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    const removeEntireCart = async (item) => {
+        const { get_cart_deletion, status } = await cartDeleteService(auth_token, item._id)
+        // console.log("delted,>>>", status)
+        if (status === 200) {
+            const fetch_cart_data = await getCart()
+            setCartData(fetch_cart_data)
+            // errorToast(`Product removed from cart.`)
+        }
+    }
+
+    const clearAllCartItems = () => {
+        if (cartData.length > 0) {
+            for (let item of cartData) {
+                removeEntireCart(item)
+            }
+        }
+        infoToast("Your Cart is Empty again. Start Ordering.")
+    };
+
     const qty_increment = (i) => {
         const incremented_qty = cartData.map(eachCartData => eachCartData._id === i ? { ...eachCartData, qty: eachCartData.qty + 1 } : eachCartData)
         setCartData(incremented_qty)
@@ -239,7 +258,7 @@ export const AuthProvider = ({ children }) => {
         infoToast(`${product.title} is movoed to cart.`)
     }
     return (
-        <AuthContext.Provider value={{ loginHandler, setLoginError, loginError, signupHandler, setSignupError, signupError, auth_token, logged_user, setAddress, delete_handler, update_address_handler, logout_handler, address, wishListHandler, wishlistData, removeWishlistHandler, addToCartHandler, removeCartHandler, cartData, qty_increment, qty_decrement, moveWishlistHandler, moveToCartHandler, setOrdered_products }}>
+        <AuthContext.Provider value={{ loginHandler, setLoginError, loginError, signupHandler, setSignupError, signupError, auth_token, logged_user, setAddress, delete_handler, update_address_handler, logout_handler, address, wishListHandler, wishlistData, removeWishlistHandler, addToCartHandler, removeCartHandler, cartData, qty_increment, qty_decrement, moveWishlistHandler, moveToCartHandler, setOrdered_products, ordered_products, clearAllCartItems }}>
             {children}
         </AuthContext.Provider>
     )
