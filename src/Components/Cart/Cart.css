@@ -74,7 +74,7 @@
 
 .cart_card_container {
     padding: 3rem;
-    /* border: 2px solid yellow; */
+    border: 2px solid yellow;
     display: flex;
     justify-content: space-between;
     flex-direction: column;

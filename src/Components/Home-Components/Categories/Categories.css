@@ -1,23 +1,24 @@
-.categories-container {
-  margin-top: 64px;
+.categories-container{
+    margin-top: 64px;
 }
 
-.categories-container-title {
+.categories-container-title{
   margin: 0 auto 48px;
-  /* border:1px solid red; */
+  border:1px solid red;
   width: fit-content;
   font-size: 40px;
   line-height: 44px;
   font-weight: 500;
-  color: rgba(0, 0, 0, .85);
+  color: rgba(0,0,0,.85);
   text-align: center;
 }
 
-.card-container {
+.card-container{
   /* margin: 0 132px; */
-  /* border: 1px solid red; */
+  border: 1px solid red;
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap:1rem;
   flex-wrap: wrap;
 }
+

@@ -5,7 +5,7 @@
 }
 
 .navigation-bar {
-    /* border: 3px solid blue; */
+    border: 3px solid blue;
     display: flex;
     justify-content: space-around;
     height: var(--nav-height);
@@ -189,7 +189,7 @@
     }
 
     .text_md {
-        /* border: 1px solid red; */
+        border: 1px solid red;
         font-weight: 700;
         order: -1;
         font-size: 14px;

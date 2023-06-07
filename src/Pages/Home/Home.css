@@ -1,78 +1,73 @@
-.main-home-container {
-    /* border: 2px solid red; */
+.main-home-container{
+    border: 2px solid red;
     padding-bottom: 100px;
 }
 
-.hero-container {
-    /* border: 1px solid red; */
+.hero-container{
+    border: 1px solid red;
     height: calc(100% - var(--nav-height));
     position: relative;
 }
 
-.nav-container {
-    /* border: 1px solid yellow; */
+.nav-container{
+    border: 1px solid yellow;
 }
 
-.upper-container {
-    background: url(/src/assets/Home/Hero/Hero1.jpg) center;
-    /* border: 2px solid green; */
-    height: 100vh;
+.upper-container{
+  background: url(/src/assets/Home/Hero/Hero1.jpg) center;
+  border: 2px solid green;
+  height: 100vh;
 }
 
 
 /* to be deleted */
-.banner-text {
+.banner-text{
     color: #fff;
-    /* border: 1px solid red; */
+    border: 1px solid red;
     /* margin: auto; */
     text-align: center;
     margin-top: 30px;
 }
 
-.banner-text>* {
+.banner-text > * {
     opacity: 0;
     animation: arrive 1s forwards;
     position: relative;
 }
 
-.eyebrow-text {
+.eyebrow-text{
     font-size: 16px;
     line-height: 20px;
     /* text-align: center; */
     height: 20px;
     font-weight: 400;
-    color: rgba(255, 255, 255, .65);
+    color: rgba(255,255,255,.65);
 }
 
 @keyframes arrive {
     0% {
-        top: -50px;
-        /* Start position above the container */
-        opacity: 0;
-        /* Start opacity */
+      top: -50px; /* Start position above the container */
+      opacity: 0; /* Start opacity */
     }
-
     100% {
-        top: 0;
-        /* End position at the top of the container */
-        opacity: 1;
-        /* End opacity */
+      top: 0; /* End position at the top of the container */
+      opacity: 1; /* End opacity */
     }
-}
+  }
 
-.banner-logo {
+.banner-logo{
     margin: 16px 0;
     animation-delay: 0.1s;
 }
 
-.banner-slogan {
+.banner-slogan{
     font-size: 20px;
     line-height: 24px;
     font-weight: 500;
     animation-delay: 0.2s;
 }
 
-.banner-btn {
+.banner-btn{
     margin: 24px 0 0 0;
     background: transparent;
     padding: 5px 36px;
@@ -84,8 +79,8 @@
     animation-delay: 0.1s;
 }
 
-.banner-btn:hover {
-    background-color: rgba(255, 255, 255, .10);
+.banner-btn:hover{
+    background-color: rgba(255,255,255,.10);
     transition: 0.3s ease-in-out;
     cursor: pointer;
 }
