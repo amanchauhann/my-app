@@ -17,6 +17,16 @@
     padding: 0 1rem;
 }
 
+.logo_container {
+    width: 30px;
+    height: 20ox;
+    display: none;
+}
+
+.nav__logo {
+    width: 100%;
+}
+
 .search-bar {
     background: none;
     /* width: 500px; */
@@ -189,4 +199,22 @@
         padding: 0;
         justify-content: space-around;
     }
+}
+
+@media screen and (max-width: 465px) {
+    .nav__title {
+        display: none;
+    }
+
+    .logo_container {
+        display: block;
+    }
+
+    /* .search-bar {
+        width: 200px;
+    }
+
+    .font_wt_semi_bold {
+        font-weight: 100;
+    } */
 }

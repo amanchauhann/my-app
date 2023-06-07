@@ -54,7 +54,11 @@ const Nav = () => {
         <>
             <nav className="navigation-bar">
                 <Link to="/">
-                    <h2>Rones</h2>
+                    <h2 className="nav__title">Rones</h2>
+                    <div className="logo_container">
+                        <img className="nav__logo" src="https://cdn.icon-icons.com/icons2/2389/PNG/512/r_logo_icon_144946.png" />
+                    </div>
+
                 </Link>
 
                 <div className="input_container">
