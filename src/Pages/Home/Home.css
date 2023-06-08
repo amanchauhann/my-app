@@ -14,8 +14,9 @@
 }
 
 .upper-container {
-    background: url(/src/assets/Home/Hero/Hero1.jpg) center;
+    background: url(/src/assets/Home/Hero/Hero1.jpg) no-repeat center;
     /* border: 2px solid green; */
+    background-size: cover;
     height: 100vh;
 }
 
