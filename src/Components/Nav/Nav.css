@@ -210,6 +210,14 @@
         display: block;
     }
 
+    .search-bar {
+        width: 170px;
+    }
+
+    .ul-list {
+        gap: 0;
+    }
+
     /* .search-bar {
         width: 200px;
     }
