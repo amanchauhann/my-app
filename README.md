@@ -1,6 +1,6 @@
 
 <div align="center">
-  <img src="/public/logo.webp" height="100" width="100" alt="logo"/>
+  <img src="https://www1.djicdn.com/dps/de46652dd99c67d4f8d17607e3bf0dce.jpg" height="100" width="100" alt="logo"/>
   <h1>RONES</h1>
     <p>Do you like taking good shots from sky? <a href="https://bakin-lane.netlify.app/">Bakin Lane</a> is for you! Its the E-Commerce Website for different varieties of Drones.</p>
  </div>
