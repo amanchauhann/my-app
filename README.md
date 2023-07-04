@@ -55,7 +55,8 @@ $ npm start
 [Rones](https://my-app-pi-eosin.vercel.app/)
 
 ## Demo Video
-
-
-https://www.youtube.com/watch?v=j26StN0BocQ
+<video controls>
+  <source src="https://www.youtube.com/watch?v=j26StN0BocQ" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
