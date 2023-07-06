@@ -44,7 +44,6 @@ const Nav = () => {
                     title.toLowerCase().includes(e.target.value.toLowerCase().trim())
                 )]
             );
-            console.log("tyttytytyt", suggestions)
             // setIsDisable(false)
         }, 500);
 
