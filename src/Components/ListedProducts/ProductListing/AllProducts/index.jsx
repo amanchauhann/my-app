@@ -23,7 +23,6 @@ const AllProducts = () => {
     const { addToCartHandler, removeCartHandler, wishListHandler, removeWishlistHandler } = useContext(AuthContext)
 
     const select_page_handler = (selected_page) => {
-        console.log("uiuiuiui", selected_page)
         setPage(selected_page)
     }
     const override = {
