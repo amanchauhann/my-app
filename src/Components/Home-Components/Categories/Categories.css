@@ -4,7 +4,6 @@
 
 .categories-container-title {
   margin: 0 auto 48px;
-  /* border:1px solid red; */
   width: fit-content;
   font-size: 40px;
   line-height: 44px;
@@ -14,8 +13,6 @@
 }
 
 .card-container {
-  /* margin: 0 132px; */
-  /* border: 1px solid red; */
   display: flex;
   justify-content: center;
   gap: 1rem;

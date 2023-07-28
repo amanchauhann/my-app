@@ -1,21 +1,15 @@
 .main-home-container {
-    /* border: 2px solid red; */
     padding-bottom: 100px;
 }
 
 .hero-container {
-    /* border: 1px solid red; */
     height: calc(100% - var(--nav-height));
     position: relative;
 }
 
-.nav-container {
-    /* border: 1px solid yellow; */
-}
 
 .upper-container {
     background: url(/src/assets/Home/Hero/Hero1.jpg) no-repeat center;
-    /* border: 2px solid green; */
     background-size: cover;
     height: 100vh;
 }
@@ -24,8 +18,6 @@
 /* to be deleted */
 .banner-text {
     color: #fff;
-    /* border: 1px solid red; */
-    /* margin: auto; */
     text-align: center;
     margin-top: 30px;
 }
@@ -39,7 +31,6 @@
 .eyebrow-text {
     font-size: 16px;
     line-height: 20px;
-    /* text-align: center; */
     height: 20px;
     font-weight: 400;
     color: rgba(255, 255, 255, .65);

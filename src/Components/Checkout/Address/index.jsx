@@ -1,11 +1,9 @@
 import { useContext, useState } from "react"
-import Card from "../../Profile/Address/Card"
 import { AuthContext } from "../../../index"
 import CheckoutAddressCard from "./Card"
 import { Link } from "react-router-dom"
 
 const Addresses = ({ setSelectedAddress }) => {
-    // const [selectedAddress, setSelectedAddress] = useState(null);
     const [selectedAddressIndex, setSelectedAddressIndex] = useState(null);
     const { logged_user, update_address } = useContext(AuthContext)
 
@@ -13,12 +11,8 @@ const Addresses = ({ setSelectedAddress }) => {
         setSelectedAddressIndex(addressIndex);
         const selected_address = JSON.parse(e.target.value)
         setSelectedAddress(selected_address)
-        // console.log("ooooooo", JSON.parse(e.target.value))
     };
 
-    // const handle_checkout_address = (e) => {
-    //     console.log(JSON.parse(e.target.value))
-    // }
     return (
         <div className="addresses_container">
             {logged_user.address.map((each_address, i) =>

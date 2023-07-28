@@ -10,7 +10,6 @@ const WishlistCard = ({ productImage, ratings, title, price, availability, _id, 
     const { logged_user } = useContext(AuthContext)
     const is_Wishlisted = logged_user.wishlist.find(({ id }) => id === existing_id)
     const in_cart = cartData.length > 0 ? cartData.find(({ id }) => id === existing_id) : false
-    console.log("from productcard>>", logged_user.wishlist)
 
     const soldOut = !availability;
     return (
@@ -32,12 +31,6 @@ const WishlistCard = ({ productImage, ratings, title, price, availability, _id, 
                                     <Heading size='md'>{title}</Heading>
                                     <p>★{ratings}</p>
                                 </div>
-
-                                {/* <Text>
-        This sofa is perfect for modern tropical spaces, baroque inspired
-        spaces, earthy toned spaces and for people who love a chic design with a
-        sprinkle of vintage design.
-      </Text> */}
                                 <Text color='blue.600' fontSize='2xl'>
                                     ${price}
                                 </Text>
@@ -54,10 +47,6 @@ const WishlistCard = ({ productImage, ratings, title, price, availability, _id, 
                                         Go to Cart
                                     </Button>
                                 </Link>
-                                //     <Button isDisabled
-                                //     variant='ghost' colorScheme='blue'>
-                                //     Already in cart
-                                // </Button>
                                 :
                                 <Button onClick={move_to_cart_btn_handler} isDisabled={soldOut}
                                     variant='solid' colorScheme='blue'>
@@ -68,10 +57,19 @@ const WishlistCard = ({ productImage, ratings, title, price, availability, _id, 
 
                             {is_Wishlisted ?
                                 <Button
-                                    variant='ghost' colorScheme='blue' border="1px" onClick={remove_wishlist_btn_handler}>
+                                    variant='ghost'
+                                    colorScheme='blue'
+                                    border="1px"
+                                    onClick={remove_wishlist_btn_handler}
+                                >
                                     Remove
                                 </Button> :
-                                <Button onClick={wishlist_btn_handler} isDisabled={soldOut} variant='ghost' colorScheme='blue'>
+                                <Button
+                                    onClick={wishlist_btn_handler}
+                                    isDisabled={soldOut}
+                                    variant='ghost'
+                                    colorScheme='blue'
+                                >
                                     Wishlist
                                 </Button>}
                         </ButtonGroup>

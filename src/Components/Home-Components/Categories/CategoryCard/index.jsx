@@ -1,4 +1,3 @@
-import { useConst } from "@chakra-ui/hooks";
 import "./CategoryCard.css";
 import { useContext } from "react";
 import { ContextData } from "../../../../index";

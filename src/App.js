@@ -3,8 +3,6 @@ import "./App.css";
 import Footer from "./Components/Footer/Footer";
 import Nav from "./Components/Nav";
 import Home from "./Pages/Home";
-import { useContext } from "react";
-import { AuthContext, ContextData } from "./index";
 import ListedProducts from "./Pages/ListedProducts";
 import Mockman from "mockman-js"
 import ProductDetail from "./Pages/ProductDetail";
@@ -25,20 +23,15 @@ import Checkout from "./Pages/Checkout";
 function App() {
   const location = useLocation();
   const shouldDisplayNav = location.pathname !== "/";
-  const { logged_user } = useContext(AuthContext)
-  // const {productsData} = useContext(ContextData)
-  // console.log(productsData.products)
+
   return (
     <div className="App">
       <ToastContainer
         position="top-right"
         autoClose={1500}
         hideProgressBar={false}
-        // newestOnTop={false}
         closeOnClick
         rtl={false}
-        // pauseOnFocusLoss
-        // draggable
         pauseOnHover
         theme="light"
       />

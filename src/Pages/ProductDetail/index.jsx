@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import ProductDetailCard from "../../Components/ProductDetail/ProductDetailCard";
-import mini2 from "../../assets/Products/Mini/mini2.jpg"
 import "./ProductDetail.css";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../index";
@@ -22,6 +21,8 @@ const ProductDetail = () => {
     const [isError, setIsError] = useState(false)
     const { ProductID } = useParams();
     const { wishListHandler, addToCartHandler, removeCartHandler } = useContext(AuthContext)
+
+
     useEffect(() => {
         const fetchingData = async () => {
             try {
@@ -32,19 +33,16 @@ const ProductDetail = () => {
                     const getSelectedProduct = await getProductDetailsData?.product
                     setSelectedProduct(getSelectedProduct)
                     setIsLoading(false)
-                    // if(getProductDetails.status !== 200){
-                    //     setIsError(true)
-                    // }
-                    console.log("fetching", getProductDetails)
                 }, 1000);
 
             } catch (e) {
-                console.log(e)
                 setIsError(e)
             }
         }
         fetchingData()
     }, [ProductID])
+
+
     return (
         <div className="product_detail_main">
             {isLoading ? <SyncLoader

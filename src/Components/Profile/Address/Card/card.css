@@ -1,5 +1,4 @@
 .address_card_content{
-    /* border: 1px solid black; */
     display: flex;
 }
 
@@ -20,14 +19,6 @@
 
 .address_card_name{
     margin-bottom: 30px;
-}
-
-.address_card_upper{
-    /* border: 1px solid red; */
-}
-
-.address_card_lower{
-    /* border: 1px solid red; */
 }
 
 .font_weight{

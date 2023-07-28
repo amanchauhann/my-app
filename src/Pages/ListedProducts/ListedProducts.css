@@ -1,5 +1,4 @@
 .listed-products {
-    /* border: 2px solid green; */
     display: flex;
     background: rgb(244, 241, 241);
     padding: 2rem 0 2rem 0;
@@ -7,7 +6,6 @@
 }
 
 .listed-products>* {
-    /* border: 3px solid red; */
     padding-top: 1rem;
 }
 

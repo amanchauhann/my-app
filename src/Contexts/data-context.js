@@ -1,12 +1,10 @@
 import { createContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 
 export const ContextData = createContext()
 
 export const DataContext = ({ children }) => {
     const [categoriesData, setCategoriesData] = useState([])
     const [productsData, setProductsData] = useState([])
-    // const [filteredPrice, setFilteredPrice] = useState(0)
     const [userFilters, setUserFilters] = useState({
         price: 0,
         categories: [],
@@ -14,11 +12,7 @@ export const DataContext = ({ children }) => {
         ratings: null,
         sort: ""
     })
-    const [userFromLocation, setUserFromLocation] = useState()
-    const [selectedProduct, setSelectedProduct] = useState([])
     const [isLoading, setIsLoading] = useState(false)
-    const { ProductID } = useParams()
-    // console.log(ProductID)
 
     useEffect(() => {
         const fetchingData = async () => {
@@ -42,11 +36,9 @@ export const DataContext = ({ children }) => {
 
     const priceHandler = (e) => {
         setUserFilters(prev => ({ ...prev, price: e.target.value }))
-        // console.log(e.target.name)
     }
 
     const categoryHandler = (filter_category) => {
-        // console.log("aaa", e.target.value)
         setUserFilters(prev => {
             return (prev.categories).find(existingCategory => existingCategory === filter_category) ? { ...prev, categories: (prev.categories).filter(eachPrevExistingCategory => eachPrevExistingCategory !== filter_category) } : { ...prev, categories: [...prev.categories, filter_category] }
         })
@@ -61,7 +53,6 @@ export const DataContext = ({ children }) => {
     }
 
     const resetFilters = () => {
-        console.log("aman")
         setUserFilters({
             price: 0,
             categories: [],
@@ -75,15 +66,19 @@ export const DataContext = ({ children }) => {
         setUserFilters(prev => ({ ...prev, sort: e.target.value }))
     }
 
-
-    // const locationHandler = (currentLocation) => {
-    //     setUserFromLocation(currentLocation.pathname)
-    // }
-
-
-
     return (
-        <ContextData.Provider value={{ categoriesData, productsData, priceHandler, categoryHandler, weightHandler, ratingHandler, sortHandler, resetFilters, userFilters, userFromLocation, isLoading }}>
+        <ContextData.Provider value={{ 
+            categoriesData, 
+            productsData, 
+            priceHandler, 
+            categoryHandler, 
+            weightHandler, 
+            ratingHandler, 
+            sortHandler, 
+            resetFilters, 
+            userFilters, 
+            isLoading 
+        }}>
             {children}
         </ContextData.Provider>
     )

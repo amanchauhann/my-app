@@ -4,14 +4,12 @@
 
 .pages_container {
     padding: 1rem;
-    /* border: 1px solid red; */
     display: flex;
     gap: 2rem;
     justify-content: center;
 }
 
 .pages {
-    /* border: 1px solid orange; */
     padding: 0.5rem 0.8rem;
     background: var(--btn-blue);
     color: white;

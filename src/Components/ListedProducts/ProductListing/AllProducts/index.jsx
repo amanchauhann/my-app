@@ -13,13 +13,9 @@ const AllProducts = () => {
     const filteredByCategoryProducts = getFilteredByCategoriesProducts(filteredByPriceProducts, userFilters.categories)
     const filteredByWeightProducts = getFilteredByWeightProducts(filteredByCategoryProducts, userFilters.weight)
     const filteredByRatingsProducts = getFilteredByRatingProducts(filteredByWeightProducts, userFilters.ratings)
-    console.log(filteredByWeightProducts)
-
-    // const sortedAndFilteredData = userFilters.sort ? userFilters.sort === "low-to-high" ? filteredByRatingsProducts.sort(function (a, b) { return a.price - b.price }) : filteredByRatingsProducts.sort(function (a, b) { return b.price - a.price }) : filteredByRatingsProducts
 
     const sortedAndFilteredData = getSortedAndFilteredData(filteredByRatingsProducts, userFilters)
 
-    // console.log("yuyuyuyuyu", (sortedAndFilteredData.length / 3))
     const { addToCartHandler, removeCartHandler, wishListHandler, removeWishlistHandler } = useContext(AuthContext)
 
     const select_page_handler = (selected_page) => {
@@ -44,7 +40,18 @@ const AllProducts = () => {
                 <>
                     <div className="products-listed-card-container">
                         <ChakraProvider>
-                            {sortedAndFilteredData.length ? sortedAndFilteredData?.slice(page * 5 - 5, page * 5).map(eachProduct => <ProductCard cart_btn_handler={() => addToCartHandler(eachProduct)} remove_cart_btn_handler={(() => removeCartHandler(eachProduct._id))} wishlist_btn_handler={() => wishListHandler(eachProduct)} remove_wishlist_btn_handler={() => removeWishlistHandler(eachProduct._id)} {...eachProduct} />) : <h2>No products found</h2>}
+                            {sortedAndFilteredData.length ?
+                                sortedAndFilteredData?.slice(page * 5 - 5, page * 5).map(eachProduct =>
+                                    <ProductCard
+                                        cart_btn_handler={() => addToCartHandler(eachProduct)}
+                                        remove_cart_btn_handler={(() => removeCartHandler(eachProduct._id))}
+                                        wishlist_btn_handler={() => wishListHandler(eachProduct)}
+                                        remove_wishlist_btn_handler={() => removeWishlistHandler(eachProduct._id)}
+                                        {...eachProduct}
+                                    />
+                                )
+                                :
+                                <h2>No products found</h2>}
                         </ChakraProvider>
                     </div>
                     <div className="pages_container">

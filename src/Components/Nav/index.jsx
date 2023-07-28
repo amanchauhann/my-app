@@ -1,50 +1,30 @@
-import { Link, useLocation } from "react-router-dom";
-import { useContext, useState, useEffect, useRef } from "react";
-import { AuthContext, ContextData } from "../../index";
+import { Link } from "react-router-dom";
+import { useContext, useState, useRef } from "react";
+import { AuthContext } from "../../index";
 import NavList from "../Action/Nav/NavList";
 import "./Nav.css";
-import Home from "../../Pages/Home";
 
 const Nav = () => {
-    const location = useLocation();
-    const { locationHandler, auth_token, logged_user, cartData } = useContext(AuthContext);
+    const { auth_token, logged_user, cartData } = useContext(AuthContext);
     const [search_value, setSearch_value] = useState("");
     const [suggestions, setSuggestions] = useState([]);
-    const [productsData, setProductsData] = useState([])
-    // const { productsData } = useContext(ContextData);
-    // const dummysuggestion = [...suggestions]
+
     const wishlistlength = logged_user?.wishlist?.length
     const cartlength = cartData?.length
-    const fetchingData = async () => {
-        try {
-            const res = await fetch("/api/products")
-            const data = await res.json()
-            setProductsData(data.products)
-        } catch (e) {
-            console.log(e.target.value)
-        }
-    }
 
     const timeoutIDRef = useRef(null);
-    // const [isDisable, setIsDisable] = useState(false)
     const search_value_handler = (e) => {
-        // if (isDisable) {
-        //     return;
-        // }
-        // setIsDisable(true)
         setSuggestions([])
         clearTimeout(timeoutIDRef.current);
         setSearch_value(e.target.value);
         timeoutIDRef.current = setTimeout(async () => {
             const res = await fetch("/api/products")
             const data = await res.json()
-            setProductsData(data.products)
             setSuggestions((prev) =>
                 [...prev, ...data.products.filter(({ title }) =>
                     title.toLowerCase().includes(e.target.value.toLowerCase().trim())
                 )]
             );
-            // setIsDisable(false)
         }, 500);
 
     };

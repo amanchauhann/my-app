@@ -6,7 +6,6 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    /* border: 1px solid red; */
 }
 
 .aside-filters-upper-container {
@@ -20,13 +19,11 @@
 
 @media screen and (max-width: 620px) {
     .aside {
-        /* align-self: center; */
         flex-direction: row;
         flex-wrap: wrap;
     }
 
     .aside-filters-upper-container {
-        /* border: 1px solid red; */
         flex-direction: column;
         justify-content: flex-start;
     }

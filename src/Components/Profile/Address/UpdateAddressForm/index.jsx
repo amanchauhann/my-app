@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { AuthContext } from "../../../../index"
 import "../AddressForm/AddressForm.css"
 import { v4 as uuidv4 } from 'uuid';
@@ -7,22 +7,8 @@ import { v4 as uuidv4 } from 'uuid';
 const UpdateAddressForm = ({ closeForm, setUpdate_address_form, update_address_form, update_btn_handler, update_cancel_handler }) => {
     const { setAddress } = useContext(AuthContext)
 
-    // const [new_address_form, setNew_address_form] = useState({
-    //     street: "",
-    //     alternatemobile: "",
-    //     city: "",
-    //     id: "",
-    //     mobile: "",
-    //     name: "",
-    //     pincode: "",
-    //     state: ""
-    // })
     const update_address_handler = (e) => {
         e.preventDefault()
-        // const newAddress = {
-        //     ...new_address_form,
-        //     id: uuidv4()
-        // }
         setAddress(prev => prev.map(eachPrevAdd => eachPrevAdd.id === update_address_form.id ? update_address_form : eachPrevAdd))
         update_cancel_handler()
         resetForm(e)

@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import "./Categories.css";
 import CategoryCard from "./CategoryCard";
-// import { categoriesData } from "./CategoriesData";
 import { ContextData } from "../../../index";
 
 

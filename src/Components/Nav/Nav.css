@@ -5,7 +5,6 @@
 }
 
 .navigation-bar {
-    /* border: 3px solid blue; */
     display: flex;
     justify-content: space-around;
     height: var(--nav-height);
@@ -29,7 +28,6 @@
 
 .search-bar {
     background: none;
-    /* width: 500px; */
     height: 30px;
     border-radius: 5%;
     color: white;
@@ -38,15 +36,10 @@
     font-weight: 300;
     box-shadow: none;
     transition: 0.7s;
-    /* border: 1px solid black; */
     flex-grow: 1;
 }
 
 /*===== for mobile =====*/
-
-
-
-/* ======== */
 
 .search-bar:focus {
     outline: none;
@@ -55,7 +48,6 @@
 }
 
 .input_container {
-    /* border: 1px solid red; */
     position: relative;
 }
 
@@ -81,14 +73,8 @@
 }
 
 .suggestion_list {
-    /* padding: none; */
     list-style-type: none;
 }
-
-/* .suggestion_list * {
-    font-weight: 500;
-    font-size: 18px;
-} */
 
 .nav_category {
     font-size: 1.5rem;
@@ -97,21 +83,14 @@
     text-transform: capitalize;
 }
 
-/* .font_wt_semi_bold {
-    font-weight: 600;
-} */
-
 .text_md {
     font-size: 1rem;
     line-height: 1.5rem;
 }
 
 .each_suggestion {
-    /* border: 1px solid grey; */
     display: flex;
-    /* align-items: center; */
     gap: 1rem;
-    /* justify-content: space-between; */
 }
 
 .suggestion_img_container {
@@ -129,7 +108,6 @@
 }
 
 .nav_right_container {
-    /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -138,19 +116,11 @@
 }
 
 .upper_nav_container {
-    /* border: 1px solid black; */
     display: flex;
     justify-content: space-between;
-    /* align-items: ; */
-}
-
-.right-container {
-    /* border: 1px solid green; */
-    /* min-height: 25px; */
 }
 
 .nav_li_container {
-    /* border: 1px solid red; */
     position: relative;
 }
 
@@ -161,12 +131,10 @@
 }
 
 .ul-list {
-    /* border: 1px solid green; */
     list-style-type: none;
     display: flex;
     gap: .7rem;
     padding: 0;
-    /* font-weight: 500; */
     color: white;
     font-weight: 500;
     align-items: center;
@@ -194,7 +162,6 @@
     }
 
     .text_md {
-        /* border: 1px solid red; */
         font-weight: 700;
         order: -1;
         font-size: 14px;
@@ -222,12 +189,4 @@
     .ul-list {
         gap: 0;
     }
-
-    /* .search-bar {
-        width: 200px;
-    }
-
-    .font_wt_semi_bold {
-        font-weight: 100;
-    } */
 }

@@ -1,15 +1,11 @@
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import "../Auth.css"
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import { users } from "../../../backend/db/users"
-import { AuthContext, ContextData } from "../../../index"
+import { AuthContext } from "../../../index"
 
 const Login = () => {
-    // const {userFromLocation} = useContext(ContextData)
-    // const navigate = useNavigate()
     const { loginHandler, loginError, setLoginError } = useContext(AuthContext)
-    const location = useLocation()
-    console.log("from login", location)
     // storing value of test user
     const existingLoginForm = {
         email: users[0].email,
@@ -21,9 +17,6 @@ const Login = () => {
         email: "",
         password: ""
     })
-
-    //state for keeping status & message of login error
-    // const [loginError, setLoginError] = useState({status: "", message: ""})
 
     //Upon clicking "login as guest", it sets loginUserDetails as existingUser
     const loginAsGuestHandler = (e) => {
@@ -47,7 +40,6 @@ const Login = () => {
         setLoginError({ status: "", message: "" })
     }
 
-    //setting loginUser Password
     const login_password_handler = (e) => {
         setLoginForm({ ...loginform, password: e.target.value })
         setLoginError({ status: "", message: "" })
@@ -56,35 +48,6 @@ const Login = () => {
     const loginUserHandler = async (e) => {
         e.preventDefault();
         loginHandler(loginform.email, loginform.password)
-
-        // // Make the POST request
-        // const res = await fetch("/api/auth/login", {
-        //     method: "POST",
-        //     headers: {
-        //     "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify(loginform),
-        // })
-        // //storing status of Response.
-        // const ResStatus= res.status
-
-        // const data = await res.json()
-
-        // //if there is error, we are setting it in state.
-        // if(ResStatus !== 200){
-        //     setLoginError({status: ResStatus, message: data.errors[0]})
-        // } 
-
-        // //if user exist, will get encodedToken
-        // const encodedToken = await data.encodedToken
-
-        // //store token in local storage, but only is user exist
-        // encodedToken && localStorage.setItem('encodedToken', encodedToken);
-
-        // //if token exist, navigate user to previous location
-        // encodedToken && navigate(userFromLocation ?? "/")
-
-
     }
 
     return (
@@ -107,10 +70,8 @@ const Login = () => {
                         <div className="button-container">
                             <button type="submit" className="auth-button">Login</button>
                             <button className="auth-button" onClick={loginAsGuestHandler}>Login as guest</button>
-
                         </div>
                     </form>
-
                     <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
                 </div>
 

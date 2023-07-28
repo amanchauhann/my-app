@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./Hero.css";
 import { useContext } from "react";
-import { ContextData, DataContext } from "../../../Contexts/data-context";
+import { ContextData } from "../../../Contexts/data-context";
 
 
 const Hero = () => {

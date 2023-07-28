@@ -15,7 +15,7 @@ const ListedProducts = () => {
         };
 
         window.addEventListener("resize", handleWindowResize);
-        handleWindowResize(); // Initial check on component mount
+        handleWindowResize();
 
         return () => {
             window.removeEventListener("resize", handleWindowResize);

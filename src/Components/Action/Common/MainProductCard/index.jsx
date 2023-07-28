@@ -7,10 +7,9 @@ import outofstock from "../../../../Logos/Utils/outofstock.png"
 
 const MainProductCard = ({ productImage, ratings, title, price, availability, _id, wishlist_btn_handler, remove_wishlist_btn_handler, cart_btn_handler, remove_cart_btn_handler, id }) => {
     const existing_id = id
-    const { logged_user, cartData, encodedToken } = useContext(AuthContext)
+    const { logged_user, cartData } = useContext(AuthContext)
     const is_Wishlisted = logged_user?.wishlist?.length > 0 ? logged_user?.wishlist?.find(({ id }) => id === existing_id) : false
     const in_cart = cartData.length > 0 ? cartData.find(({ id }) => id === existing_id) : false
-    console.log("from productcard>>", logged_user?.wishlist)
 
     const soldOut = !availability;
     return (
@@ -23,7 +22,7 @@ const MainProductCard = ({ productImage, ratings, title, price, availability, _i
                                 src={productImage}
                                 alt='Green double couch with wooden legs'
                                 borderRadius='lg'
-                                objectFit='s' // Ensure the entire image is visible
+                                objectFit='s'
                                 boxSize='250px'
                             />
 
@@ -32,12 +31,6 @@ const MainProductCard = ({ productImage, ratings, title, price, availability, _i
                                     <Heading size='md'>{title}</Heading>
                                     <p>★{ratings}</p>
                                 </div>
-
-                                {/* <Text>
-        This sofa is perfect for modern tropical spaces, baroque inspired
-        spaces, earthy toned spaces and for people who love a chic design with a
-        sprinkle of vintage design.
-      </Text> */}
                                 <Text color='blue.600' fontSize='2xl'>
                                     ${price}
                                 </Text>
@@ -77,8 +70,3 @@ const MainProductCard = ({ productImage, ratings, title, price, availability, _i
 }
 
 export default MainProductCard
-
-// <Button border='1px solid red' onClick={remove_cart_btn_handler}
-//                                     variant='ghost' colorScheme='red'>
-//                                     Discard
-//                                 </Button>

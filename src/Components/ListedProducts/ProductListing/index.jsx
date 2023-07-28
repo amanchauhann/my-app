@@ -5,7 +5,6 @@ import { ContextData } from "../../../Contexts/data-context";
 
 const ProductListing = () => {
   const { sortHandler, userFilters } = useContext(ContextData)
-  console.log("sort", userFilters.sort)
 
   return (
     <div className="ProductListing">

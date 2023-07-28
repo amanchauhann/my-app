@@ -1,15 +1,12 @@
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { createContext, useEffect, useRef, useState } from "react";
 import { LoginService, SignupService, addToCartService, cartDeleteService, wishlistDeleteService, wishlistService } from "../Services";
 import { useNavigate, useLocation } from "react-router";
-import { ContextData } from "./data-context";
-import { toast } from "react-toastify";
 import { errorToast, infoToast, successToast } from "../Extra";
 
 export const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
     const userDetail_local_storage = JSON.parse(localStorage.getItem('userDetails'));
-    // console.log("initial", userDetail_local_storage)
     const [auth_token, setAuth_Token] = useState(userDetail_local_storage?.encodedToken)
     const [logged_user, setLogged_User] = useState(userDetail_local_storage?.user);
     const [wishlistData, setWishlistData] = useState(logged_user?.wishlist || logged_user?.wishlist || [])
@@ -25,11 +22,8 @@ export const AuthProvider = ({ children }) => {
         state: 'Arunachal Pradesh',
     }])
     const [address, setAddress] = useState(logged_user?.address && logged_user?.address)
-    // const { userFromLocation, prod } = useContext(ContextData)
-    // console.log("pp", address)
     const location = useLocation()
-    console.log("context location", location)
-    // console.log(userFromLocation)
+
     const navigate = useNavigate()
     const [loginError, setLoginError] = useState({ status: "", message: "" })
     const [signupError, setSignupError] = useState({ status: "", message: "" })
@@ -42,7 +36,6 @@ export const AuthProvider = ({ children }) => {
             setLoginError({ status: ResStatus, message: data.errors[0] })
         }
 
-        console.log("opopopop", location)
         const encodedToken = await data.encodedToken
         const userData = { ...data.foundUser, address: initialAddress }
         setAddress(initialAddress)
@@ -51,15 +44,9 @@ export const AuthProvider = ({ children }) => {
         setCartData(userData.cart)
         setAuth_Token(encodedToken)
         setLogged_User(userData)
-        // encodedToken && navigate(userFromLocation ?? "/")
-        // const encodedToken = await data.encodedToken
 
-        // const encodedToken = await data.encodedToken
-        // localStorage.setItem('userDetails', JSON.stringify({ encodedToken: encodedToken, user: data.foundUser }));
         encodedToken && successToast("Successfully logged in")
-        console.log("just for you", userData)
         encodedToken && navigate(location?.state?.from?.pathname ?? "/")
-        // encodedToken && navigate(userFromLocation ?? "/")
     }
 
     const signupHandler = async (email, password, name) => {
@@ -75,7 +62,6 @@ export const AuthProvider = ({ children }) => {
         setAuth_Token(encodedToken)
         setLogged_User(userData)
         encodedToken && navigate(location?.state?.from?.pathname ?? "/")
-        // encodedToken && navigate(userFromLocation ?? "/")
     }
     useEffect(() => {
         if (address !== undefined && auth_token) {
@@ -86,12 +72,6 @@ export const AuthProvider = ({ children }) => {
 
     }, [address])
 
-    // useEffect(()=>{
-    //     const DataUpdatedAddress = {...userDetail_local_storage, address: address}
-    //     localStorage.setItem('userDetails', JSON.stringify(DataUpdatedAddress))
-    //     setLogged_User(DataUpdatedAddress)
-    // }, [address])
-
     const delete_handler = (i) => {
         const DataUpdatedAddresss = { ...logged_user, address: address.filter(({ id }) => id !== i) }
         setAddress(address.filter(({ id }) => id !== i))
@@ -100,7 +80,6 @@ export const AuthProvider = ({ children }) => {
     }
 
     const update_address_handler = (add) => {
-        console.log("oooooooooooo", add)
         if (add !== undefined) {
             const DataWithNewAddress = { ...logged_user, address: logged_user.address.map(eachAdd => eachAdd.id === add.id ? add : eachAdd) }
             localStorage.setItem('userDetails', JSON.stringify({ encodedToken: auth_token, user: DataWithNewAddress }))
@@ -123,7 +102,6 @@ export const AuthProvider = ({ children }) => {
                 setWishlistError(status, get_wishlist.errors[0])
             }
             const data_with_update_wishlist = { ...logged_user, wishlist: [product, ...logged_user.wishlist] }
-            // console.log(wishlist)
             setLogged_User(data_with_update_wishlist)
             setWishlistData(get_wishlist)
             localStorage.setItem('userDetails', JSON.stringify({ encodedToken: auth_token, user: data_with_update_wishlist }))
@@ -147,20 +125,7 @@ export const AuthProvider = ({ children }) => {
         setLogged_User(DataUpdatedWishlist)
         setWishlistData(get_wishlist_deletion)
         localStorage.setItem('userDetails', JSON.stringify({ encodedToken: auth_token, user: DataUpdatedWishlist }))
-        // console.log("aaaaaaaaaa", i)
-        // const DataUpdatedWishlist = { ...logged_user, wishlist: logged_user?.wishlist.filter(({ _id }) => _id !== i) }
-        // localStorage.setItem('userDetails', JSON.stringify({ encodedToken: auth_token, user: DataUpdatedWishlist }))
-        // setLogged_User(DataUpdatedWishlist)
-
     }
-
-    // await fetch(`/api/user/wishlist/${product_id}`, {
-    //     method: "DELETE",
-    //     headers: {
-    //         "Content-Type": "application/json",
-    //         "authorization": `${auth_token}`
-    //     }
-
 
     const getCart = async () => {
         try {
@@ -173,7 +138,6 @@ export const AuthProvider = ({ children }) => {
             })
             const getCartData = await getCartRes.json()
             const getCart = await getCartData.cart
-            // setCategoriesData(getCategories)
             return await getCart
         }
         catch (e) {
@@ -194,7 +158,6 @@ export const AuthProvider = ({ children }) => {
             clearTimeout(timeoutIDRef.current);
             timeoutIDRef.current = setTimeout(async () => {
                 const { get_cart, status } = await addToCartService(auth_token, product);
-                console.log("lololo", status);
                 if (status === 201) {
                     const fetch_cart_data = await getCart();
                     setCartData(fetch_cart_data);
@@ -209,7 +172,6 @@ export const AuthProvider = ({ children }) => {
 
     const removeCartHandler = async (i) => {
         const { get_cart_deletion, status } = await cartDeleteService(auth_token, i)
-        console.log("delted,>>>", status)
         if (status === 200) {
             const fetch_cart_data = await getCart()
             setCartData(fetch_cart_data)
@@ -219,11 +181,9 @@ export const AuthProvider = ({ children }) => {
 
     const removeEntireCart = async (item) => {
         const { get_cart_deletion, status } = await cartDeleteService(auth_token, item._id)
-        // console.log("delted,>>>", status)
         if (status === 200) {
             const fetch_cart_data = await getCart()
             setCartData(fetch_cart_data)
-            // errorToast(`Product removed from cart.`)
         }
     }
 
@@ -253,12 +213,38 @@ export const AuthProvider = ({ children }) => {
     }
 
     const moveToCartHandler = async (product) => {
-        // removeWishlistHandler(product._id)
         addToCartHandler(product)
         infoToast(`${product.title} is movoed to cart.`)
     }
     return (
-        <AuthContext.Provider value={{ loginHandler, setLoginError, loginError, signupHandler, setSignupError, signupError, auth_token, logged_user, setAddress, delete_handler, update_address_handler, logout_handler, address, wishListHandler, wishlistData, removeWishlistHandler, addToCartHandler, removeCartHandler, cartData, qty_increment, qty_decrement, moveWishlistHandler, moveToCartHandler, setOrdered_products, ordered_products, clearAllCartItems }}>
+        <AuthContext.Provider value={{ 
+            loginHandler, 
+            setLoginError, 
+            loginError, 
+            signupHandler, 
+            setSignupError, 
+            signupError, 
+            auth_token, 
+            logged_user, 
+            setAddress, 
+            delete_handler, 
+            update_address_handler, 
+            logout_handler, 
+            address, 
+            wishListHandler, 
+            wishlistData, 
+            removeWishlistHandler, 
+            addToCartHandler, 
+            removeCartHandler, 
+            cartData, 
+            qty_increment, 
+            qty_decrement, 
+            moveWishlistHandler, 
+            moveToCartHandler, 
+            setOrdered_products, 
+            ordered_products, 
+            clearAllCartItems 
+        }}>
             {children}
         </AuthContext.Provider>
     )

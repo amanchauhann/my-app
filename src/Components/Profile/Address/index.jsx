@@ -3,23 +3,12 @@ import { AuthContext } from "../../../Contexts/auth-context"
 import "./address.css"
 import Card from "./Card"
 import AddressForm from "./AddressForm"
-import { v4 as uuidv4 } from 'uuid';
 import UpdateAddressForm from "./UpdateAddressForm"
 
 const Address = () => {
     const [show_form, setShow_form] = useState(false)
     const [showUpdateForm, setShowUpdateForm] = useState(false)
-    const [address_to_update, setAddress_to_update] = useState({})
-    // {
-    //     street: '8505 Christina Ridges',
-    //     alternatemobile: 4878794411,
-    //     city: 'West Cooper',
-    //     id: '2364c34d-7645-49cb-8b74-4bc5cb09711d',
-    //     mobile: 1293452481,
-    //     name: 'Vicki McDermott',
-    //     pincode: '820598',
-    //     state: 'Arunachal Pradesh',
-    // }
+
     const [update_address_form, setUpdate_address_form] = useState({
         street: "",
         alternatemobile: "",
@@ -31,13 +20,10 @@ const Address = () => {
         state: ""
     })
 
-    const { logged_user, setAddress } = useContext(AuthContext)
-    console.log("logged user", logged_user)
-    const [existingAddress, setExistingAddress] = useState()
+    const { logged_user } = useContext(AuthContext)
 
     const add_address_handler = () => {
         setShow_form(true)
-        setExistingAddress(false)
     }
 
     const cancel_handler = () => {
@@ -52,7 +38,7 @@ const Address = () => {
         setShowUpdateForm(true)
         setUpdate_address_form(address)
     }
-    console.log(update_address_form)
+
     return (
         <div className="profile_address_main">
             {!show_form && !showUpdateForm && <div className="add_address" onClick={add_address_handler}>Add new Address</div>}

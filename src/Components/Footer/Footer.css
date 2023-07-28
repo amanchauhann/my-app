@@ -1,17 +1,13 @@
 .footer{
-    /* margin-top: 100px; */
     background: #272727;
     padding: 32px 0;
-    /* width: 100%; */
 }
 
 .footer-text-container{
-    /* border: 1px solid red; */
     max-width: 600px;
     text-align: center;
     margin: auto auto 40px;
     padding: 1rem;
-
 }
 
 .one-line-title{

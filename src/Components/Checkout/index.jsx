@@ -16,7 +16,7 @@ const CheckoutContainer = () => {
         const price_for_item = price * qty
         return initial_price + price_for_item
     }, 0)
-    console.log("from checkout", process.env.REACT_APP_RZP)
+
     const navigate = useNavigate()
     const loadScript = async (url) => {
         return new Promise((resolve) => {
@@ -51,22 +51,10 @@ const CheckoutContainer = () => {
             currency: "INR",
             name: "RONES",
             description: "Thank you for shopping with us",
-            // image: "",
             handler: function (response) {
-                console.log(response)
                 setIfOrdered(response.razorpay_payment_id)
                 setOrdered_products(cartData)
-                // const orderData = {
-                //     orderedItems: [...cart],
-                //     amount: totalPrice(cart).toFixed(2),
-                //     address: Object.values(checkoutInputs.addressInput).join(","),
-                //     paymentId: response.razorpay_payment_id,
-                // };
-                // setOrders((prev) => [orderData, ...prev]);
-                // dispatch({ type: "UPDATE_INDEX" });
                 clearAllCartItems();
-                // navigate("/")
-
             },
             prefill: {
                 name: logged_user?.name,
@@ -81,7 +69,6 @@ const CheckoutContainer = () => {
         const paymentObject = new window.Razorpay(options);
         paymentObject.open();
     };
-    console.log("poooooooooooooooooo", selectedAddress)
 
     return (
         <>

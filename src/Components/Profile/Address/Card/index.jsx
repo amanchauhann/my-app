@@ -4,7 +4,7 @@ import { AuthContext } from "../../../../index";
 import AddressCard from "./AddressCard";
 
 const Card = ({ ...args }) => {
-    const { name, street, city, state, pincode, mobile, alternatemobile, id, update_handler } = args
+    const { id, update_handler } = args
     const { delete_handler } = useContext(AuthContext)
     return (
         <>
